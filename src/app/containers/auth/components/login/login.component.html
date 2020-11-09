@@ -2,7 +2,7 @@
   <h3 class="mb-3">Logowanie</h3>
   <div class="form-group"
        [ngClass]="{'form-group-error': loginForm.get('username').touched && loginForm.get('username').hasError('required')}">
-    <label for="username">Nazwa użytkownika</label>
+    <label for="username">Nazwa użytkownika <bs-required-mark></bs-required-mark></label>
     <input type="text" name="username" id="username" class="form-control" formControlName="username">
     <small class="form-text text-danger"
            *ngIf="loginForm.get('username').touched && loginForm.get('username').hasError('required')">
@@ -12,7 +12,7 @@
 
   <div class="form-group"
        [ngClass]="{'form-group-error': loginForm.get('password').touched && loginForm.get('password').hasError('required')}">
-    <label for="password">Hasło</label>
+    <label for="password">Hasło <bs-required-mark></bs-required-mark></label>
     <input type="password" name="password" id="password" class="form-control" formControlName="password">
     <small class="form-text text-danger"
            *ngIf="loginForm.get('password').touched && loginForm.get('password').hasError('required')">

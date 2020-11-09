@@ -2,13 +2,15 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HeaderComponent } from './components/header/header.component';
 import {RouterModule} from '@angular/router';
+import { RequiredMarkComponent } from './components/forms/required-mark/required-mark.component';
 
 
 
 @NgModule({
-  declarations: [HeaderComponent],
+  declarations: [HeaderComponent, RequiredMarkComponent],
   exports: [
-    HeaderComponent
+    HeaderComponent,
+    RequiredMarkComponent
   ],
   imports: [
     CommonModule,
