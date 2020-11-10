@@ -3,14 +3,17 @@ import { CommonModule } from '@angular/common';
 import { HeaderComponent } from './components/header/header.component';
 import {RouterModule} from '@angular/router';
 import { RequiredMarkComponent } from './components/forms/required-mark/required-mark.component';
+import { NotificationsComponent } from './components/notifications/notifications.component';
+import { NotificationComponent } from './components/notification/notification.component';
 
 
 
 @NgModule({
-  declarations: [HeaderComponent, RequiredMarkComponent],
+  declarations: [HeaderComponent, RequiredMarkComponent, NotificationsComponent, NotificationComponent],
   exports: [
     HeaderComponent,
-    RequiredMarkComponent
+    RequiredMarkComponent,
+    NotificationsComponent
   ],
   imports: [
     CommonModule,

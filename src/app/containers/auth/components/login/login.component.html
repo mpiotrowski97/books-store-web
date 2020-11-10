@@ -1,5 +1,8 @@
-<form [formGroup]="loginForm">
+<form [formGroup]="loginForm" (submit)="handleFormSubmit()">
   <h3 class="mb-3">Logowanie</h3>
+
+  <bs-notifications></bs-notifications>
+
   <div class="form-group"
        [ngClass]="{'form-group-error': loginForm.get('username').touched && loginForm.get('username').hasError('required')}">
     <label for="username">Nazwa użytkownika <bs-required-mark></bs-required-mark></label>
@@ -20,5 +23,5 @@
     </small>
   </div>
 
-  <button type="button" class="btn btn-primary" [disabled]="loginForm.invalid">Zaloguj się</button>
+  <button type="submit" class="btn btn-primary" [disabled]="loginForm.invalid">Zaloguj się</button>
 </form>
