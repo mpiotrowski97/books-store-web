@@ -1,6 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {ConfirmationValidator} from '../../validators/confirmation.validator';
+import {Router} from '@angular/router';
+import {NotificationsService} from '../../../../core/services/notifications.service';
 
 @Component({
   selector: 'bs-register',
@@ -10,7 +12,7 @@ import {ConfirmationValidator} from '../../validators/confirmation.validator';
 export class RegisterComponent implements OnInit {
   public registerForm: FormGroup;
 
-  constructor(private formBuilder: FormBuilder) {
+  constructor(private formBuilder: FormBuilder, private router: Router, private notificationsService: NotificationsService) {
   }
 
   ngOnInit(): void {
@@ -24,4 +26,8 @@ export class RegisterComponent implements OnInit {
     });
   }
 
+  handleSubmitEvent(): void {
+    this.notificationsService.addSuccessNotification('Założyliśmy konto. Na twoją skrzynke wysłaliśmy instrukcje odnośnie aktywacji konta');
+    this.router.navigate(['auth', 'login']);
+  }
 }

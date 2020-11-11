@@ -8,12 +8,18 @@ import {NotificationType} from '../types/notification-type.enum';
 })
 export class NotificationsService {
   private notificationsSubject = new Subject<Notification>();
+  private notifications: Notification[] = [];
 
   public getNotificationsSubject(): Subject<Notification> {
     return this.notificationsSubject;
   }
 
+  public getNotifications(): Notification[] {
+    return this.notifications;
+  }
+
   public addSuccessNotification(content: string): void {
+    this.notifications.push({content, type: NotificationType.SUCCESS});
     this.notificationsSubject.next({content, type: NotificationType.SUCCESS});
   }
 }

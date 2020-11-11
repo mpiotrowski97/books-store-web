@@ -16,9 +16,11 @@ export class NotificationsComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
+    this.notifications = this.notificationsService.getNotifications();
+    
     this.notificationsSubscription = this.notificationsService
       .getNotificationsSubject()
-      .subscribe(notification => this.notifications.push(notification));
+      .subscribe(notification => this.notifications = this.notificationsService.getNotifications());
   }
 
   ngOnDestroy(): void {
