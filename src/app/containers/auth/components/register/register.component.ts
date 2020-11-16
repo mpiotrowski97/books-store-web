@@ -3,6 +3,7 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {ConfirmationValidator} from '../../validators/confirmation.validator';
 import {Router} from '@angular/router';
 import {NotificationsService} from '../../../../core/services/notifications.service';
+import {LoginService} from '../../services/login.service';
 
 @Component({
   selector: 'bs-register',
@@ -12,7 +13,12 @@ import {NotificationsService} from '../../../../core/services/notifications.serv
 export class RegisterComponent implements OnInit {
   public registerForm: FormGroup;
 
-  constructor(private formBuilder: FormBuilder, private router: Router, private notificationsService: NotificationsService) {
+  constructor(
+    private formBuilder: FormBuilder,
+    private router: Router,
+    private notificationsService: NotificationsService,
+    private loginService: LoginService
+  ) {
   }
 
   ngOnInit(): void {
@@ -27,7 +33,17 @@ export class RegisterComponent implements OnInit {
   }
 
   handleSubmitEvent(): void {
-    this.notificationsService.addSuccessNotification('Założyliśmy konto. Na twoją skrzynke wysłaliśmy instrukcje odnośnie aktywacji konta');
-    this.router.navigate(['auth', 'login']);
+    this
+      .loginService
+      .register(this.registerForm.get('username').value, this.registerForm.get('email').value, this.registerForm.get('password').value)
+      .subscribe(
+        () => {
+          this.router.navigate(['auth', 'login']).then(() => {
+            this.notificationsService.addSuccessNotification(
+              'Założyliśmy konto. Na twoją skrzynke wysłaliśmy instrukcje odnośnie aktywacji konta'
+            );
+          });
+        }
+      );
   }
 }

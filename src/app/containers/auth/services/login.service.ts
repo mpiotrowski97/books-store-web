@@ -11,10 +11,16 @@ export class LoginService {
   }
 
   login(username: string, password: string): Observable<any> {
-    return this.http.get('user', {
+    return this.http.get('auth/login', {
       headers: {
         authorization: `Basic ${btoa(`${username}:${password}`)}`
       }
+    });
+  }
+
+  register(username: string, email: string, password: string): Observable<any> {
+    return this.http.post('auth/register', {
+      username, email, password
     });
   }
 }
