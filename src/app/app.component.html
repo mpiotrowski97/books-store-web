@@ -1,7 +1,12 @@
-<bs-header></bs-header>
+<ng-container *ngIf="ready">
+  <bs-header></bs-header>
 
-<div class="container">
-  <router-outlet></router-outlet>
-</div>
+  <div class="container">
+    <router-outlet></router-outlet>
+  </div>
+
+</ng-container>
 
 <bs-application-error *ngIf="errorExists"></bs-application-error>
+
+<bs-application-loader *ngIf="!ready"></bs-application-loader>

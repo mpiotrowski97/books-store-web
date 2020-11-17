@@ -6,16 +6,20 @@ import { RequiredMarkComponent } from './components/forms/required-mark/required
 import { NotificationsComponent } from './components/notifications/notifications.component';
 import { NotificationComponent } from './components/notification/notification.component';
 import { ApplicationErrorComponent } from './components/application-error/application-error.component';
+import { LoaderComponent } from './components/loader/loader.component';
+import { ApplicationLoaderComponent } from './components/application-loader/application-loader.component';
 
 
 
 @NgModule({
-  declarations: [HeaderComponent, RequiredMarkComponent, NotificationsComponent, NotificationComponent, ApplicationErrorComponent],
+  declarations: [HeaderComponent, RequiredMarkComponent, NotificationsComponent, NotificationComponent, ApplicationErrorComponent, LoaderComponent, ApplicationLoaderComponent],
   exports: [
     HeaderComponent,
     RequiredMarkComponent,
     NotificationsComponent,
-    ApplicationErrorComponent
+    ApplicationErrorComponent,
+    LoaderComponent,
+    ApplicationLoaderComponent
   ],
   imports: [
     CommonModule,

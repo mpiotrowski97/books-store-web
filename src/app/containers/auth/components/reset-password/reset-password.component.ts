@@ -1,8 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {Router} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {NotificationsService} from '../../../../core/services/notifications.service';
 import {ConfirmationValidator} from '../../validators/confirmation.validator';
+import {AuthService} from '../../services/auth.service';
 
 @Component({
   selector: 'bs-reset-password',
@@ -13,7 +14,13 @@ export class ResetPasswordComponent implements OnInit {
 
   public resetPasswordForm: FormGroup;
 
-  constructor(private formBuilder: FormBuilder, private router: Router, private notificationsService: NotificationsService) {
+  constructor(
+    private formBuilder: FormBuilder,
+    private router: Router,
+    private notificationsService: NotificationsService,
+    private route: ActivatedRoute,
+    private authService: AuthService
+  ) {
   }
 
   ngOnInit(): void {
@@ -24,8 +31,15 @@ export class ResetPasswordComponent implements OnInit {
   }
 
   handleFormSubmit(): void {
-    this.router.navigate(['auth', 'login']).then(() => {
-      this.notificationsService.addSuccessNotification('Zmieniliśmy twoje hasło. Zaloguj się używając nowego hasła.');
-    });
+    const code = this.route.snapshot.queryParamMap.get('code');
+
+    this.authService.resetPassword(code, this.resetPasswordForm.get('password').value)
+      .subscribe(
+        () => {
+          this.router.navigate(['auth', 'login']).then(() => {
+            this.notificationsService.addSuccessNotification('Zmieniliśmy twoje hasło. Zaloguj się używając nowego hasła.');
+          });
+        }
+      );
   }
 }

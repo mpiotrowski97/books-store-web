@@ -9,9 +9,10 @@ import { RegisterComponent } from './components/register/register.component';
 import {CoreModule} from '../../core/core.module';
 import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
 import { ResetPasswordComponent } from './components/reset-password/reset-password.component';
+import { VerificationComponent } from './components/verification/verification.component';
 
 @NgModule({
-  declarations: [LoginComponent, AuthComponent, RegisterComponent, ForgotPasswordComponent, ResetPasswordComponent],
+  declarations: [LoginComponent, AuthComponent, RegisterComponent, ForgotPasswordComponent, ResetPasswordComponent, VerificationComponent],
   imports: [
     CommonModule,
     AuthRoutingModule,

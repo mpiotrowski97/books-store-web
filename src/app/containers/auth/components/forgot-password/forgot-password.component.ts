@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {NotificationsService} from '../../../../core/services/notifications.service';
 import {Router} from '@angular/router';
+import {AuthService} from '../../services/auth.service';
 
 @Component({
   selector: 'bs-forgot-password',
@@ -9,14 +10,13 @@ import {Router} from '@angular/router';
   styleUrls: ['./forgot-password.component.scss']
 })
 export class ForgotPasswordComponent implements OnInit {
-
-
   public forgotPasswordForm: FormGroup;
 
   constructor(
     private formBuilder: FormBuilder,
     private notificationsService: NotificationsService,
-    private router: Router
+    private router: Router,
+    private authService: AuthService
   ) {
   }
 
@@ -27,8 +27,14 @@ export class ForgotPasswordComponent implements OnInit {
   }
 
   handleFormSubmit(): void {
-    this.router.navigate(['auth', 'login']).then(() => {
-      this.notificationsService.addSuccessNotification('Na twoją skrzynke wysłaliśmy instrukcję dotyczącą resetu hasła');
-    });
+    this.authService
+      .passwordRecovery(this.forgotPasswordForm.get('email').value)
+      .subscribe(
+        () => {
+          this.router.navigate(['auth', 'login']).then(() => {
+            this.notificationsService.addSuccessNotification('Na twoją skrzynke wysłaliśmy instrukcję dotyczącą resetu hasła');
+          });
+        }
+      );
   }
 }

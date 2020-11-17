@@ -1,7 +1,8 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {ErrorService} from './core/services/error.service';
-import {Subscription} from 'rxjs';
+import {Subscription, throwError} from 'rxjs';
+import {InitService} from './core/services/init.service';
 
 @Component({
   selector: 'bs-root',
@@ -10,15 +11,22 @@ import {Subscription} from 'rxjs';
 })
 export class AppComponent implements OnInit, OnDestroy {
   public errorExists = false;
+  public ready = false;
   public errorSubscription: Subscription;
 
-  constructor(private http: HttpClient, private errorService: ErrorService) {
+  constructor(
+    private http: HttpClient,
+    private errorService: ErrorService,
+    private initService: InitService
+  ) {
   }
 
   ngOnInit(): void {
-    this.http
-      .get('auth/login')
-      .subscribe();
+    this.initService.init()
+      .subscribe(
+        () => this.ready = true,
+        () => this.ready = true,
+      );
 
     this.errorSubscription = this.errorService
       .getErrorSubject()
