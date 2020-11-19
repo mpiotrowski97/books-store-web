@@ -11,7 +11,7 @@ export class LoginService {
   }
 
   login(username: string, password: string): Observable<any> {
-    return this.http.get('auth/login', {
+    return this.http.get('user', {
       headers: {
         authorization: `Basic ${btoa(`${username}:${password}`)}`
       }

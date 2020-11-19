@@ -22,4 +22,9 @@ export class NotificationsService {
     this.notifications.push({content, type: NotificationType.SUCCESS});
     this.notificationsSubject.next({content, type: NotificationType.SUCCESS});
   }
+
+  public removeNotification(notification: Notification): void {
+    this.notifications = this.notifications.filter(existingNotification => existingNotification !== notification);
+    this.notificationsSubject.next(null);
+  }
 }

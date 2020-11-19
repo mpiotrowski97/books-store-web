@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {NotificationsService} from '../../../../core/services/notifications.service';
 import {LoginService} from '../../services/login.service';
@@ -9,7 +9,6 @@ import {LoginService} from '../../services/login.service';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent {
-
   public loginForm: FormGroup = this.formBuilder.group({
     username: this.formBuilder.control('', [Validators.required]),
     password: this.formBuilder.control('', [Validators.required])
