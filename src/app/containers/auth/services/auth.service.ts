@@ -1,11 +1,14 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
+import {User} from '../../../core/models/user';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
+  private loggedUser: User;
+
   constructor(private http: HttpClient) {
   }
 
@@ -25,5 +28,13 @@ export class AuthService {
     return this.http.post('auth/reset-password', {
       code, password
     });
+  }
+
+  public isAuthenticated(): boolean {
+    return !!this.loggedUser;
+  }
+
+  public setLoggedUser(user: User): void {
+    this.loggedUser = user;
   }
 }

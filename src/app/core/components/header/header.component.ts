@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {LogoutService} from '../../services/logout.service';
 
 @Component({
   selector: 'bs-header',
@@ -7,4 +7,10 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent {
+  constructor(private authService: LogoutService) {
+  }
+
+  handleLogoutClick(): void {
+    this.authService.logout();
+  }
 }

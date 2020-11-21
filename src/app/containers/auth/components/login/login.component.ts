@@ -2,6 +2,7 @@ import {Component} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {NotificationsService} from '../../../../core/services/notifications.service';
 import {LoginService} from '../../services/login.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'bs-login',
@@ -17,15 +18,16 @@ export class LoginComponent {
   constructor(
     private formBuilder: FormBuilder,
     private notificationsService: NotificationsService,
-    private loginService: LoginService
+    private loginService: LoginService,
+    private router: Router
   ) {
   }
 
   handleFormSubmit(): void {
     this.loginService
       .login(this.loginForm.get('username').value, this.loginForm.get('password').value)
-      .subscribe(
-        () => this.notificationsService.addSuccessNotification('Poprawnie zalogowano')
-      );
+      .subscribe(() => {
+        this.router.navigate(['/']);
+      });
   }
 }
