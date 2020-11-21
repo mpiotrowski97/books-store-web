@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs';
 import {HttpClient} from '@angular/common/http';
-import {LoginModelResponse} from '../../../core/models/api-response';
+import {LoginModelResponse} from '../../core/models/api-response';
 import {AuthService} from './auth.service';
 import {tap} from 'rxjs/operators';
 

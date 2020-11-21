@@ -1,11 +1,11 @@
 import {NgModule} from '@angular/core';
 import {Routes, RouterModule} from '@angular/router';
-import {LoginComponent} from './components/login/login.component';
+import {LoginComponent} from './containers/login/login.component';
 import {AuthComponent} from './auth.component';
-import {RegisterComponent} from './components/register/register.component';
-import {ForgotPasswordComponent} from './components/forgot-password/forgot-password.component';
-import {ResetPasswordComponent} from './components/reset-password/reset-password.component';
-import {VerificationComponent} from './components/verification/verification.component';
+import {RegisterComponent} from './containers/register/register.component';
+import {ForgotPasswordComponent} from './containers/forgot-password/forgot-password.component';
+import {ResetPasswordComponent} from './containers/reset-password/reset-password.component';
+import {VerificationComponent} from './containers/verification/verification.component';
 
 const routes: Routes = [
   {

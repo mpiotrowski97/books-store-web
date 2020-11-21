@@ -1,6 +1,6 @@
 import {Component} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {NotificationsService} from '../../../../core/services/notifications.service';
+import {NotificationsService} from '../../../core/services/notifications.service';
 import {LoginService} from '../../services/login.service';
 import {Router} from '@angular/router';
 

@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {AuthService} from '../../services/auth.service';
-import {NotificationsService} from '../../../../core/services/notifications.service';
+import {NotificationsService} from '../../../core/services/notifications.service';
 
 @Component({
   selector: 'bs-verification',

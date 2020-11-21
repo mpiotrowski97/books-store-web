@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {ConfirmationValidator} from '../../validators/confirmation.validator';
 import {Router} from '@angular/router';
-import {NotificationsService} from '../../../../core/services/notifications.service';
+import {NotificationsService} from '../../../core/services/notifications.service';
 import {LoginService} from '../../services/login.service';
 
 @Component({

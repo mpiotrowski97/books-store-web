@@ -3,7 +3,7 @@ import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {LoginModelResponse} from '../models/api-response';
 import {tap} from 'rxjs/operators';
-import {AuthService} from '../../containers/auth/services/auth.service';
+import {AuthService} from '../../auth/services/auth.service';
 
 @Injectable({
   providedIn: 'root'
