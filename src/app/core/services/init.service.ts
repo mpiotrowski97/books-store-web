@@ -6,7 +6,9 @@ import {Observable} from 'rxjs';
   providedIn: 'root'
 })
 export class InitService {
-  constructor(private http: HttpClient) { }
+  constructor(
+    private http: HttpClient,
+  ) { }
 
   public init(): Observable<any> {
     return this.http.get('auth/login');
