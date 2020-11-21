@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {UsersService} from '../../../services/users.service';
+import {User} from '../../../../core/models/user';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'bs-users-list',
@@ -7,9 +10,32 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UsersListComponent implements OnInit {
 
-  constructor() { }
+  public users: User[] = [];
 
-  ngOnInit(): void {
+  constructor(
+    private usersService: UsersService,
+    private router: Router
+  ) {
   }
 
+  ngOnInit(): void {
+    this.getList();
+  }
+
+  handleDeleteClick(user: User): void {
+    if (!confirm('Do you want to delete this user?')) {
+      return;
+    }
+
+    this.usersService.delete(user)
+      .subscribe(() => this.getList());
+  }
+
+  getList(): void {
+    this.usersService
+      .list()
+      .subscribe(response => {
+        this.users = response.content;
+      });
+  }
 }

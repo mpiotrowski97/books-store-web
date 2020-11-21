@@ -1,3 +1,31 @@
 <div>
-  <a [routerLink]="['create']" class="btn btn-primary">Create user</a>
+  <div>
+    <a [routerLink]="['create']" class="btn btn-sm btn-success mb-3">Create user</a>
+  </div>
+
+  <div>
+    <table class="table">
+      <thead>
+      <tr>
+        <th>Email</th>
+        <th>Username</th>
+        <th>Roles</th>
+        <th>Actions</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let user of users">
+        <td>{{ user.email }}</td>
+        <td>{{ user.username }}</td>
+        <td>{{ user.roles.join(', ') }}</td>
+        <td>
+          <div class="btn-group-sm">
+            <button type="button" class="btn btn-sm btn-warning">Edit</button>
+            <button type="button" class="btn btn-sm btn-danger ml-1" (click)="handleDeleteClick(user)">Delete</button>
+          </div>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
 </div>
