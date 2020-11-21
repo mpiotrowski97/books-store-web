@@ -1,8 +1,6 @@
 <form [formGroup]="loginForm" (submit)="handleFormSubmit()">
   <h3 class="mb-3">Logowanie</h3>
 
-  <bs-notifications></bs-notifications>
-
   <div class="form-group"
        [ngClass]="{'form-group-error': loginForm.get('username').touched && loginForm.get('username').hasError('required')}">
     <label for="username">Nazwa użytkownika

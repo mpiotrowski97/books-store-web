@@ -1,11 +1,17 @@
 import {NgModule} from '@angular/core';
-import {RouterModule} from '@angular/router';
+import {RouterModule, Routes} from '@angular/router';
 import {DashboardComponent} from './dashboard.component';
 
-const routes = [
+const routes: Routes = [
   {
     path: '',
-    component: DashboardComponent
+    component: DashboardComponent,
+    children: [
+      {
+        path: 'users',
+        loadChildren: () => import('./containers/user/user.module').then(m => m.UserModule)
+      }
+    ]
   }
 ];
 
