@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {Observable} from 'rxjs';
+import {BehaviorSubject, Observable} from 'rxjs';
 import {User} from '../../../core/models/user';
 
 @Injectable({
@@ -8,6 +8,7 @@ import {User} from '../../../core/models/user';
 })
 export class AuthService {
   private loggedUser: User;
+  private authenticated: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
 
   constructor(private http: HttpClient) {
   }
@@ -30,11 +31,12 @@ export class AuthService {
     });
   }
 
-  public isAuthenticated(): boolean {
-    return !!this.loggedUser;
+  public isAuthenticated(): BehaviorSubject<boolean> {
+    return this.authenticated;
   }
 
   public setLoggedUser(user: User): void {
     this.loggedUser = user;
+    this.authenticated.next(!!user);
   }
 }
