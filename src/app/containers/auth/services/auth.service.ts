@@ -9,6 +9,7 @@ import {User} from '../../../core/models/user';
 export class AuthService {
   private loggedUser: User;
   private authenticated: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
+  private roles: BehaviorSubject<string[]> = new BehaviorSubject<string[]>([]);
 
   constructor(private http: HttpClient) {
   }
@@ -35,8 +36,13 @@ export class AuthService {
     return this.authenticated;
   }
 
+  public getRoles(): BehaviorSubject<string[]> {
+    return this.roles;
+  }
+
   public setLoggedUser(user: User): void {
     this.loggedUser = user;
     this.authenticated.next(!!user);
+    this.roles.next(user?.roles);
   }
 }

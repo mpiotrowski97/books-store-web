@@ -9,6 +9,7 @@ import {ApplicationErrorComponent} from './components/application-error/applicat
 import {LoaderComponent} from './components/loader/loader.component';
 import {ApplicationLoaderComponent} from './components/application-loader/application-loader.component';
 import {AuthenticatedDirective} from './directives/authenticated.directive';
+import { HasRoleDirective } from './directives/has-role.directive';
 
 
 @NgModule({
@@ -20,7 +21,8 @@ import {AuthenticatedDirective} from './directives/authenticated.directive';
     ApplicationErrorComponent,
     LoaderComponent,
     ApplicationLoaderComponent,
-    AuthenticatedDirective
+    AuthenticatedDirective,
+    HasRoleDirective
   ],
   exports: [
     HeaderComponent,

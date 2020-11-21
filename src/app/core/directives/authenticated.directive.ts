@@ -1,11 +1,12 @@
 import {Directive, Input, OnDestroy, OnInit, TemplateRef, ViewContainerRef} from '@angular/core';
 import {AuthService} from '../../containers/auth/services/auth.service';
 import {Subscription} from 'rxjs';
+import {map} from 'rxjs/operators';
 
 @Directive({
   selector: '[bsAuthenticated]'
 })
-export class AuthenticatedDirective implements OnInit, OnDestroy{
+export class AuthenticatedDirective implements OnInit, OnDestroy {
   private authenticatedSubscription: Subscription;
 
   @Input()
@@ -15,7 +16,8 @@ export class AuthenticatedDirective implements OnInit, OnDestroy{
     private templateRef: TemplateRef<any>,
     private authService: AuthService,
     private viewContainer: ViewContainerRef
-  ) { }
+  ) {
+  }
 
   ngOnDestroy(): void {
     if (this.authenticatedSubscription) {
@@ -24,13 +26,14 @@ export class AuthenticatedDirective implements OnInit, OnDestroy{
   }
 
   ngOnInit(): void {
-    this.authenticatedSubscription = this.authService.isAuthenticated().subscribe((isAuthenticated) => {
-      if (isAuthenticated && this.bsAuthenticated || !isAuthenticated && !this.bsAuthenticated) {
-        this.viewContainer.createEmbeddedView(this.templateRef);
-      } else {
-        this.viewContainer.clear();
-      }
-    });
+    this.authenticatedSubscription = this.authService
+      .isAuthenticated()
+      .pipe(
+        map(isAuthenticated => isAuthenticated && this.bsAuthenticated || !isAuthenticated && !this.bsAuthenticated)
+      )
+      .subscribe((isAuthenticated) => {
+        isAuthenticated ? this.viewContainer.createEmbeddedView(this.templateRef) : this.viewContainer.clear();
+      });
   }
 
 
