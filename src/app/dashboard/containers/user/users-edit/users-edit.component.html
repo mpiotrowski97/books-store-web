@@ -1,0 +1,5 @@
+<div>
+  <h3>Edit user</h3>
+  <bs-loader *ngIf="isLoading"></bs-loader>
+  <bs-users-form *ngIf="!isLoading" submitLabel="Edit" [editUser]="user" (formSubmit)="handleFormSubmit($event)"></bs-users-form>
+</div>

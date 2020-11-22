@@ -4,8 +4,8 @@ export interface Role {
 }
 
 export const ROLE_USER = 'ROLE_USER';
-export const ROLE_MODERATOR = 'ROLE_USER,ROLE_MODERATOR';
-export const ROLE_ADMIN = 'ROLE_USER,ROLE_ADMIN';
+export const ROLE_MODERATOR = 'ROLE_MODERATOR';
+export const ROLE_ADMIN = 'ROLE_ADMINISTRATOR';
 
 export const ROLES: Role[] = [
   {

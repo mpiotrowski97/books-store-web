@@ -10,7 +10,7 @@
       <a *bsAuthenticated="false" class="nav-item nav-link" [routerLink]="['auth', 'register']" routerLinkActive="active">
         Rejestracja
       </a>
-      <a *bsHasRole="'ROLE_ADMIN'" class="nav-item nav-link" [routerLink]="['dashboard']" routerLinkActive="active">
+      <a *bsHasRole="'ROLE_ADMINISTRATOR'" class="nav-item nav-link" [routerLink]="['dashboard']" routerLinkActive="active">
         Dashboard
       </a>
       <a *bsAuthenticated="true" class="nav-item nav-link logout-link" (click)="handleLogoutClick()">

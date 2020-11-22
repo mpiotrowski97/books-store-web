@@ -20,7 +20,7 @@
         <td>{{ user.roles.join(', ') }}</td>
         <td>
           <div class="btn-group-sm">
-            <button type="button" class="btn btn-sm btn-warning">Edit</button>
+            <a [routerLink]="['edit', user.id]" type="button" class="btn btn-sm btn-warning">Edit</a>
             <button type="button" class="btn btn-sm btn-danger ml-1" (click)="handleDeleteClick(user)">Delete</button>
           </div>
         </td>
