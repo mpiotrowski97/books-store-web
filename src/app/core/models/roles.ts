@@ -5,7 +5,7 @@ export interface Role {
 
 export const ROLE_USER = 'ROLE_USER';
 export const ROLE_MODERATOR = 'ROLE_MODERATOR';
-export const ROLE_ADMIN = 'ROLE_ADMINISTRATOR';
+export const ROLE_ADMINISTRATOR = 'ROLE_ADMINISTRATOR';
 
 export const ROLES: Role[] = [
   {
@@ -18,6 +18,6 @@ export const ROLES: Role[] = [
   },
   {
     label: 'Administrator',
-    value: ROLE_ADMIN
+    value: ROLE_ADMINISTRATOR
   }
 ];

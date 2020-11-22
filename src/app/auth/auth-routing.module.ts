@@ -6,11 +6,13 @@ import {RegisterComponent} from './containers/register/register.component';
 import {ForgotPasswordComponent} from './containers/forgot-password/forgot-password.component';
 import {ResetPasswordComponent} from './containers/reset-password/reset-password.component';
 import {VerificationComponent} from './containers/verification/verification.component';
+import {AuthGuard} from './guards/auth.guard';
 
 const routes: Routes = [
   {
     path: '',
     component: AuthComponent,
+    canActivate: [AuthGuard],
     children: [
       {
         path: 'login',

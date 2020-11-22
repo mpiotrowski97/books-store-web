@@ -36,6 +36,10 @@ export class AuthService {
     return this.authenticated;
   }
 
+  public isUserLoggedIn(): boolean {
+    return !!this.loggedUser;
+  }
+
   public getRoles(): BehaviorSubject<string[]> {
     return this.roles;
   }
@@ -44,5 +48,14 @@ export class AuthService {
     this.loggedUser = user;
     this.authenticated.next(!!user);
     this.roles.next(user?.roles);
+  }
+
+
+  public hasRole(role: string): boolean {
+    if (!this.loggedUser?.roles) {
+      return false;
+    }
+
+    return this.loggedUser.roles.includes(role);
   }
 }
