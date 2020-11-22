@@ -10,6 +10,11 @@ const routes: Routes = [
     canActivate: [DashboardGuard],
     children: [
       {
+        path: '',
+        pathMatch: 'full',
+        redirectTo: 'users'
+      },
+      {
         path: 'users',
         loadChildren: () => import('./containers/user/user.module').then(m => m.UserModule)
       }
