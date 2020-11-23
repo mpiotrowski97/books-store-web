@@ -3,7 +3,9 @@
     <a [routerLink]="['create']" class="btn btn-sm btn-success mb-3">Create user</a>
   </div>
 
-  <div>
+  <bs-loader *ngIf="isLoading"></bs-loader>
+
+  <div *ngIf="!isLoading">
     <table class="table">
       <thead>
       <tr>
@@ -27,5 +29,8 @@
       </tr>
       </tbody>
     </table>
+
+    <bs-pagination [pageable]="pageable"></bs-pagination>
   </div>
+
 </div>

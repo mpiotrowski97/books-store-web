@@ -1,6 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {UsersService} from '../../../services/users.service';
 import {User} from '../../../../core/models/user';
+import {Pageable} from '../../../../core/models/api-response';
+import {pipe} from 'rxjs';
+import {finalize} from 'rxjs/operators';
 
 @Component({
   selector: 'bs-users-list',
@@ -8,8 +11,9 @@ import {User} from '../../../../core/models/user';
   styleUrls: ['./users-list.component.scss']
 })
 export class UsersListComponent implements OnInit {
-
+  public isLoading = true;
   public users: User[] = [];
+  public pageable: Pageable<User>;
 
   constructor(
     private usersService: UsersService
@@ -30,10 +34,16 @@ export class UsersListComponent implements OnInit {
   }
 
   getList(): void {
+    this.isLoading = true;
+
     this.usersService
       .list()
+      .pipe(
+        finalize(() => this.isLoading = false)
+      )
       .subscribe(response => {
         this.users = response.content;
+        this.pageable = response;
       });
   }
 }

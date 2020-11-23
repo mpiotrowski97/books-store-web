@@ -10,6 +10,7 @@ import {LoaderComponent} from './components/loader/loader.component';
 import {ApplicationLoaderComponent} from './components/application-loader/application-loader.component';
 import {AuthenticatedDirective} from './directives/authenticated.directive';
 import { HasRoleDirective } from './directives/has-role.directive';
+import { PaginationComponent } from './components/pagination/pagination.component';
 
 
 @NgModule({
@@ -22,7 +23,8 @@ import { HasRoleDirective } from './directives/has-role.directive';
     LoaderComponent,
     ApplicationLoaderComponent,
     AuthenticatedDirective,
-    HasRoleDirective
+    HasRoleDirective,
+    PaginationComponent
   ],
   exports: [
     HeaderComponent,
@@ -30,7 +32,8 @@ import { HasRoleDirective } from './directives/has-role.directive';
     NotificationsComponent,
     ApplicationErrorComponent,
     LoaderComponent,
-    ApplicationLoaderComponent
+    ApplicationLoaderComponent,
+    PaginationComponent
   ],
   imports: [
     CommonModule,
