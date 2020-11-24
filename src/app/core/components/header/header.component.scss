@@ -1,3 +1,12 @@
-.logout-link {
-  cursor: pointer;
+.navbar {
+  background: #F0F0F0;
+
+  .navbar-brand {
+    text-transform: uppercase;
+
+  }
+
+  .logout-link {
+    cursor: pointer;
+  }
 }

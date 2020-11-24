@@ -11,6 +11,7 @@ import {ApplicationLoaderComponent} from './components/application-loader/applic
 import {AuthenticatedDirective} from './directives/authenticated.directive';
 import { HasRoleDirective } from './directives/has-role.directive';
 import { PaginationComponent } from './components/pagination/pagination.component';
+import { SubnavComponent } from './components/subnav/subnav.component';
 
 
 @NgModule({
@@ -24,7 +25,8 @@ import { PaginationComponent } from './components/pagination/pagination.componen
     ApplicationLoaderComponent,
     AuthenticatedDirective,
     HasRoleDirective,
-    PaginationComponent
+    PaginationComponent,
+    SubnavComponent
   ],
   exports: [
     HeaderComponent,
@@ -33,7 +35,8 @@ import { PaginationComponent } from './components/pagination/pagination.componen
     ApplicationErrorComponent,
     LoaderComponent,
     ApplicationLoaderComponent,
-    PaginationComponent
+    PaginationComponent,
+    SubnavComponent
   ],
   imports: [
     CommonModule,
