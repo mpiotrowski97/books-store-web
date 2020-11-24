@@ -3,6 +3,7 @@ import {HttpClient} from '@angular/common/http';
 import {ErrorService} from './core/services/error.service';
 import {Subscription, throwError} from 'rxjs';
 import {InitService} from './core/services/init.service';
+import {finalize} from 'rxjs/operators';
 
 @Component({
   selector: 'bs-root',
@@ -23,10 +24,10 @@ export class AppComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.initService.init()
-      .subscribe(
-        () => this.ready = true,
-        () => this.ready = true,
-      );
+      .pipe(
+        finalize(() => this.ready = true)
+      )
+      .subscribe();
 
     this.errorSubscription = this.errorService
       .getErrorSubject()

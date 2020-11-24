@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
-import {LoginModelResponse} from '../models/api-response';
+import {ContextInitResponse} from '../models/api-response';
 import {tap} from 'rxjs/operators';
 import {AuthService} from '../../auth/services/auth.service';
+import {CategoriesService} from './categories.service';
 
 @Injectable({
   providedIn: 'root'
@@ -11,13 +12,17 @@ import {AuthService} from '../../auth/services/auth.service';
 export class InitService {
   constructor(
     private http: HttpClient,
-    private authService: AuthService
+    private authService: AuthService,
+    private categoriesService: CategoriesService
   ) { }
 
-  public init(): Observable<LoginModelResponse> {
-    return this.http.get<LoginModelResponse>('auth/login')
+  public init(): Observable<ContextInitResponse> {
+    return this.http.get<ContextInitResponse>('context/init')
       .pipe(
-        tap(response => this.authService.setLoggedUser(response.user))
+        tap(response => {
+          this.authService.setLoggedUser(response.user);
+          this.categoriesService.pushCategories(response.categories);
+        })
       );
   }
 }

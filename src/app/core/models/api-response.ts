@@ -1,4 +1,10 @@
 import {User} from './user';
+import {Category} from './category';
+
+export interface ContextInitResponse {
+  user: User;
+  categories: Category[];
+}
 
 export interface LoginModelResponse {
   user: User;
