@@ -1,0 +1,21 @@
+<div class="pb-3 pt-3">
+
+  <div>
+    <div class="mb-5 text-uppercase d-flex flex-row align-items-center">
+      <h3 class="mb-0">{{ title }}</h3>
+
+      <a href="#" class="text-uppercase ml-3">See all</a>
+    </div>
+
+    <carousel [arrowsOutside]="true" [cellsToShow]="5">
+      <div class="carousel-cell" *ngFor="let book of books$ | async">
+        <div class="card">
+          <div class="card-body">
+            <h4 class="card-title">{{ book.title }}</h4>
+            <p class="card-text">{{ book.description }}</p>
+          </div>
+        </div>
+      </div>
+    </carousel>
+  </div>
+</div>
