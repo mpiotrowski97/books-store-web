@@ -124,6 +124,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "books-store-web"
+    }
+  },
+  "defaultProject": "books-store-web",
+  "cli": {
+    "analytics": false
+  }
 }

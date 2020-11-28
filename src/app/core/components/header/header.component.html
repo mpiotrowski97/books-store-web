@@ -3,6 +3,13 @@
 
     <a class="navbar-brand" routerLink="">Books Store</a>
 
+    <div class="search-bar input-group">
+      <input type="text" class="form-control" aria-label="Search">
+      <div class="input-group-append">
+        <button class="btn btn-outline-secondary" type="button">Search</button>
+      </div>
+    </div>
+
     <div class="nav navbar-nav">
       <a *bsAuthenticated="false" class="nav-item nav-link" [routerLink]="['auth', 'login']" routerLinkActive="active">
         Zaloguj się
