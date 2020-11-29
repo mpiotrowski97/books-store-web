@@ -4,36 +4,21 @@
     <div class="container">
       <a class="navbar-brand" routerLink="">Books Store</a>
 
-      <div class="search-bar input-group" *bsHideInCheckout>
-        <input type="text" class="form-control" aria-label="Search">
-        <div class="input-group-append">
-          <button class="btn btn-outline-secondary" type="button">Search</button>
+      <div class="flex-row d-flex">
+        <div class="nav navbar-nav mr-3" *bsHideInCheckout>
+          <a *bsAuthenticated="true" class="nav-item nav-link" [routerLink]="['checkout', 'cart']"
+             routerLinkActive="active">
+            Cart
+          </a>
         </div>
-      </div>
 
-      <div class="nav navbar-nav" *bsHideInCheckout>
-        <a *bsAuthenticated="true" class="nav-item nav-link" [routerLink]="['checkout', 'cart']"
-           routerLinkActive="active">
-          Cart
-        </a>
-        <a *bsAuthenticated="false" class="nav-item nav-link" [routerLink]="['auth', 'login']"
-           routerLinkActive="active">
-          Sign in
-        </a>
-        <a *bsAuthenticated="false" class="nav-item nav-link" [routerLink]="['auth', 'register']"
-           routerLinkActive="active">
-          Sign up
-        </a>
-        <a *bsHasRole="'ROLE_ADMINISTRATOR'" class="nav-item nav-link" [routerLink]="['dashboard']"
-           routerLinkActive="active">
-          Dashboard
-        </a>
-        <a *bsAuthenticated="true" class="nav-item nav-link logout-link" (click)="handleLogoutClick()">
-          Sign out
-        </a>
+        <div class="search-bar input-group" *bsHideInCheckout>
+          <input type="text" class="form-control" aria-label="Search">
+          <div class="input-group-append">
+            <button class="btn btn-outline-secondary" type="button">Search</button>
+          </div>
+        </div>
       </div>
     </div>
   </div>
-
-
 </nav>

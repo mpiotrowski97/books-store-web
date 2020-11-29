@@ -20,11 +20,11 @@ export class HideInCheckoutDirective implements OnInit, OnDestroy {
       if (!(event instanceof NavigationEnd)) {
         return;
       }
-
-      this.viewContainer.clear();
-
       if (!this.router.isActive('checkout', false)) {
+        this.viewContainer.clear();
         this.viewContainer.createEmbeddedView(this.templateRef);
+      } else {
+        this.viewContainer.clear();
       }
     });
   }

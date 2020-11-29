@@ -13,6 +13,7 @@ import { HasRoleDirective } from './directives/has-role.directive';
 import { PaginationComponent } from './components/pagination/pagination.component';
 import { SubnavComponent } from './components/subnav/subnav.component';
 import { HideInCheckoutDirective } from './directives/hide-in-checkout.directive';
+import { UpperNavbarComponent } from './components/upper-navbar/upper-navbar.component';
 
 
 @NgModule({
@@ -29,6 +30,7 @@ import { HideInCheckoutDirective } from './directives/hide-in-checkout.directive
     PaginationComponent,
     SubnavComponent,
     HideInCheckoutDirective,
+    UpperNavbarComponent,
   ],
   exports: [
     HeaderComponent,
@@ -39,7 +41,10 @@ import { HideInCheckoutDirective } from './directives/hide-in-checkout.directive
     ApplicationLoaderComponent,
     PaginationComponent,
     SubnavComponent,
-    HideInCheckoutDirective
+    HideInCheckoutDirective,
+    AuthenticatedDirective,
+    HasRoleDirective,
+    UpperNavbarComponent
   ],
   imports: [
     CommonModule,

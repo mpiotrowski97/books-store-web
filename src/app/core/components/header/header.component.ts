@@ -7,10 +7,4 @@ import {LogoutService} from '../../services/logout.service';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent {
-  constructor(private authService: LogoutService) {
-  }
-
-  handleLogoutClick(): void {
-    this.authService.logout();
-  }
 }
