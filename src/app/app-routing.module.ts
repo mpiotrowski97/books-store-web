@@ -4,7 +4,7 @@ import {Routes, RouterModule} from '@angular/router';
 const routes: Routes = [
   {
     path: '',
-    loadChildren: () => import('./shop/shop.module').then(m => m.ShopModule)
+    loadChildren: () => import('./main/main.module').then(m => m.MainModule)
   },
   {
     path: 'auth',

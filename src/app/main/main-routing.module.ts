@@ -7,6 +7,10 @@ const routes: Routes = [
     path: '',
     pathMatch: 'full',
     component: HomeComponent
+  },
+  {
+    path: 'checkout',
+    loadChildren: () => import('./containers/checkout/checkout.module').then(m => m.CheckoutModule)
   }
 ];
 
@@ -14,6 +18,6 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class ShopRoutingModule {
+export class MainRoutingModule {
 
 }
