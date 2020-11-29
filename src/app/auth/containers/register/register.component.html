@@ -1,13 +1,13 @@
 <form [formGroup]="registerForm" (submit)="handleSubmitEvent()">
-  <h3 class="mb-3">Rejestracja</h3>
+  <h3 class="mb-3">Sign up</h3>
 
   <div class="form-group"
        [ngClass]="{'form-group-error': registerForm.get('username').touched && registerForm.get('username').hasError('required')}">
-    <label for="username">Nazwa użytkownika <bs-required-mark></bs-required-mark></label>
+    <label for="username">Username <bs-required-mark></bs-required-mark></label>
     <input type="text" class="form-control" name="username" id="username" formControlName="username">
     <small class="form-text text-danger"
            *ngIf="registerForm.get('username').touched && registerForm.get('username').hasError('required')">
-      Uzupełnij nazwę użytkownika
+      Please enter a username
     </small>
   </div>
 
@@ -17,39 +17,39 @@
     <input type="text" class="form-control" name="email" id="email" formControlName="email">
     <small class="form-text text-danger"
            *ngIf="registerForm.get('email').touched && registerForm.get('email').hasError('required')">
-      Uzupełnij email
+      Please enter an email
     </small>
 
     <small class="form-text text-danger"
            *ngIf="registerForm.get('email').touched && registerForm.get('email').hasError('email')">
-      Podaj poprawny email
+      Please enter a valid email
     </small>
   </div>
 
   <div class="form-group"
        [ngClass]="{'form-group-error': registerForm.get('password').touched && registerForm.get('password').invalid}">
-    <label for="password">Hasło <bs-required-mark></bs-required-mark></label>
+    <label for="password">Password <bs-required-mark></bs-required-mark></label>
     <input type="password" class="form-control" name="password" id="password" formControlName="password">
     <small class="form-text text-danger"
            *ngIf="registerForm.get('password').touched && registerForm.get('password').hasError('required')">
-      Uzupełnij hasło
+      Please enter a password
     </small>
   </div>
 
   <div class="form-group" [ngClass]="{'form-group-error': registerForm.get('passwordConfirmation').touched && registerForm.get('passwordConfirmation').invalid}">
-    <label for="password-confirmation">Powtórz hasło <bs-required-mark></bs-required-mark></label>
+    <label for="password-confirmation">Confirm password <bs-required-mark></bs-required-mark></label>
     <input type="password" class="form-control" name="password-confirmation" id="password-confirmation"
            formControlName="passwordConfirmation">
     <small class="form-text text-danger"
            *ngIf="registerForm.get('passwordConfirmation').touched && registerForm.get('passwordConfirmation').hasError('required')">
-      Potwierdź hasło
+      Please confirm your password
     </small>
 
     <small class="form-text text-danger"
            *ngIf="registerForm.get('passwordConfirmation').touched && registerForm.get('passwordConfirmation').hasError('confirmation')">
-      Hasła nie są takie same
+      Password does not match
     </small>
   </div>
 
-  <button class="btn btn-primary" [disabled]="registerForm.invalid">Zarejestruj</button>
+  <button class="btn btn-primary" [disabled]="registerForm.invalid">Register</button>
 </form>
