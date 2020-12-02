@@ -8,14 +8,9 @@
 
     <bs-loader *ngIf="isLoading"></bs-loader>
 
-    <carousel [arrowsOutside]="true" [cellsToShow]="5" *ngIf="!isLoading">
-      <div class="carousel-cell" *ngFor="let book of books">
-        <div class="card">
-          <div class="card-body">
-            <h4 class="card-title">{{ book.title }}</h4>
-            <p class="card-text">{{ book.description }}</p>
-          </div>
-        </div>
+    <carousel [arrowsOutside]="true" [cellsToShow]="4"  [height]="340" *ngIf="!isLoading">
+      <div *ngFor="let book of books" class="carousel-cell">
+        <bs-book-card [book]="book"></bs-book-card>
       </div>
     </carousel>
   </div>

@@ -1,0 +1,20 @@
+<div class="card">
+  <div class="card-body text-center">
+    <img class="w-50"
+         src="https://www.swiatksiazki.pl/media/catalog/product/cache/8700249466b3ee6242cfa222c30c22e2/3/4/3499906703934.jpg"
+        [alt]="book.title">
+
+    <h5 class="card-title p-1 m-0">{{ book.title }}</h5>
+
+    <small class="p-1">{{ book.author }}</small>
+
+    <div class="text-info">
+      <strong>{{ book.price }} $</strong>
+    </div>
+
+    <div>
+      <button class="btn btn-success">Add to cart</button>
+    </div>
+
+  </div>
+</div>
