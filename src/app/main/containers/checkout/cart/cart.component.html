@@ -12,7 +12,7 @@
       </tr>
       </thead>
       <tbody>
-      <tr>
+      <tr *ngFor="let cartItem of items">
         <td class="flex">
           <div>
             <img
@@ -20,30 +20,14 @@
               alt="image">
           </div>
         </td>
-        <td>31,99$</td>
+        <td>{{ cartItem.bookPrice | number }}$</td>
         <td class="w-25">
           <div>
-            <input type="text" aria-label="Count" class="form-control">
+            <input type="number" aria-label="Count" class="form-control" [name]="'cart-item-' + cartItem.id"
+                   [(ngModel)]="cartItem.quantity">
           </div>
         </td>
-        <td>31,99$</td>
-      </tr>
-
-      <tr>
-        <td class="flex">
-          <div>
-            <img
-              src="https://www.swiatksiazki.pl/media/catalog/product/cache/8700249466b3ee6242cfa222c30c22e2/1/5/1599906685215.jpg"
-              alt="image">
-          </div>
-        </td>
-        <td>31,99$</td>
-        <td class="w-25">
-          <div>
-            <input type="text" aria-label="Count" class="form-control">
-          </div>
-        </td>
-        <td>31,99$</td>
+        <td>{{ cartItem.value | number }}$</td>
       </tr>
       </tbody>
     </table>
@@ -53,7 +37,7 @@
     <div class="mt-3 btn-group">
       <a [routerLink]="['']" class="btn btn-info">Continue shopping</a>
       <button class="btn btn-danger">Clear cart</button>
-      <button class="btn btn-primary">Recalculate  cart</button>
+      <button class="btn btn-primary">Recalculate cart</button>
     </div>
   </div>
 
@@ -64,12 +48,12 @@
       <tbody>
       <tr>
         <td class="font-weight-bolder">Value</td>
-        <td class="text-right">31,99$</td>
+        <td class="text-right">{{ value | number }} $</td>
       </tr>
       </tbody>
     </table>
 
 
-    <button class="btn btn-primary w-100">Złóż zamówienie</button>
+    <button class="btn btn-primary w-100">Go to checkout</button>
   </div>
 </div>
