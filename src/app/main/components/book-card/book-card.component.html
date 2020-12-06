@@ -13,7 +13,7 @@
     </div>
 
     <div>
-      <button class="btn btn-success" [disabled]="isProcessing" (click)="handleAddToCartClick()">
+      <button class="btn btn-success" [disabled]="isProcessing" *bsAuthenticated="true" (click)="handleAddToCartClick()">
         <span *ngIf="isProcessing" class="spinner-border spinner-border-sm" role="status"></span>
         <span *ngIf="!isProcessing">Add to card</span>
       </button>

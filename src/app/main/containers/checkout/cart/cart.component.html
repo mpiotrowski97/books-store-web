@@ -1,4 +1,6 @@
-<div class="row">
+<bs-loader *ngIf="isLoading"></bs-loader>
+
+<div class="row" *ngIf="!isLoading">
   <div class="col-md-7 border p-3">
     <table class="table">
       <thead>
@@ -61,16 +63,7 @@
     <table class="table">
       <tbody>
       <tr>
-        <td scope="row">Value</td>
-        <td class="text-right">31,99$</td>
-      </tr>
-      </tbody>
-    </table>
-
-    <table class="table">
-      <tbody>
-      <tr>
-        <td class="font-weight-bolder">Summary</td>
+        <td class="font-weight-bolder">Value</td>
         <td class="text-right">31,99$</td>
       </tr>
       </tbody>

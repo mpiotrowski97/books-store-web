@@ -1,5 +1,6 @@
 import {User} from './user';
 import {Category} from './category';
+import {CartItem} from './cart-item';
 
 export interface ContextInitResponse {
   authUserModel: User;
@@ -16,6 +17,11 @@ export interface Pageable<T> {
   size: number;
   totalElements: number;
   totalPages: number;
+}
+
+export interface CartSummaryResponse {
+  items: CartItem[];
+  value: number;
 }
 
 // tslint:disable-next-line:no-empty-interface
