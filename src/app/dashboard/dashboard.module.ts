@@ -4,6 +4,7 @@ import {DashboardRoutingModule} from './dashboard-routing.module';
 import { DashboardComponent } from './dashboard.component';
 import { UsersFormComponent } from './components/users-form/users-form.component';
 import {ReactiveFormsModule} from '@angular/forms';
+import {CoreModule} from '../core/core.module';
 
 
 
@@ -15,7 +16,8 @@ import {ReactiveFormsModule} from '@angular/forms';
   imports: [
     CommonModule,
     DashboardRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    CoreModule
   ]
 })
 export class DashboardModule { }

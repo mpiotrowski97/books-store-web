@@ -4,6 +4,7 @@ import {HttpClient} from '@angular/common/http';
 import {LoginModelResponse} from '../../core/models/api-response';
 import {AuthService} from './auth.service';
 import {tap} from 'rxjs/operators';
+import {RegisterUserRequest} from '../../core/models/api-request';
 
 @Injectable({
   providedIn: 'root'
@@ -26,9 +27,7 @@ export class LoginService {
       );
   }
 
-  register(username: string, email: string, password: string): Observable<any> {
-    return this.http.post('auth/register', {
-      username, email, password
-    });
+  register(registerRequest: RegisterUserRequest): Observable<any> {
+    return this.http.post('auth/register', registerRequest);
   }
 }

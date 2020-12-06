@@ -1,8 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {UsersService} from '../../../services/users.service';
 import {User} from '../../../../core/models/user';
-import {ActivatedRoute} from '@angular/router';
-import {finalize, startWith} from 'rxjs/operators';
+import {ActivatedRoute, Router} from '@angular/router';
+import {finalize} from 'rxjs/operators';
+import {NotificationsService} from '../../../../core/services/notifications.service';
 
 @Component({
   selector: 'bs-users-edit',
@@ -16,7 +17,9 @@ export class UsersEditComponent implements OnInit {
 
   constructor(
     private usersService: UsersService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private router: Router,
+    private notificationsService: NotificationsService
   ) {
   }
 
@@ -32,6 +35,13 @@ export class UsersEditComponent implements OnInit {
   }
 
   handleFormSubmit(user: User): void {
-    this.usersService.update(this.id, user).subscribe();
+    this.usersService.update(this.id, user)
+      .subscribe(
+        () => {
+          this.router.navigate(['/', 'dashboard', 'users']).then(() => {
+            this.notificationsService.addSuccessNotification('User has been successfully updated');
+          });
+        }
+      );
   }
 }

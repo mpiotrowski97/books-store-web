@@ -26,7 +26,16 @@ export class RegisterComponent implements OnInit {
       username: this.formBuilder.control('', [Validators.required]),
       email: this.formBuilder.control('', [Validators.required, Validators.email]),
       password: this.formBuilder.control('', [Validators.required]),
-      passwordConfirmation: this.formBuilder.control('', [Validators.required])
+      passwordConfirmation: this.formBuilder.control('', [Validators.required]),
+      firstName: this.formBuilder.control('', [Validators.required]),
+      lastName: this.formBuilder.control('', [Validators.required]),
+      phoneNumber: this.formBuilder.control('', [Validators.required]),
+      city: this.formBuilder.control(''),
+      street: this.formBuilder.control(''),
+      houseNumber: this.formBuilder.control(''),
+      province: this.formBuilder.control(''),
+      postcode: this.formBuilder.control(''),
+      country: this.formBuilder.control(''),
     }, {
       validators: [ConfirmationValidator('password', 'passwordConfirmation')]
     });
@@ -35,7 +44,7 @@ export class RegisterComponent implements OnInit {
   handleSubmitEvent(): void {
     this
       .loginService
-      .register(this.registerForm.get('username').value, this.registerForm.get('email').value, this.registerForm.get('password').value)
+      .register(this.registerForm.value)
       .subscribe(
         () => {
           this.router.navigate(['auth', 'login']).then(() => {

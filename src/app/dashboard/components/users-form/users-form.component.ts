@@ -34,6 +34,15 @@ export class UsersFormComponent implements OnInit {
       username: this.formBuilder.control(this.editUser?.username, [Validators.required]),
       password: this.formBuilder.control('', [...!this.editUser ? [Validators.required] : []]),
       roles: this.formBuilder.control(this.userRole(), [Validators.required]),
+      firstName: this.formBuilder.control(this.editUser?.firstName, [Validators.required]),
+      lastName: this.formBuilder.control(this.editUser?.lastName, [Validators.required]),
+      phoneNumber: this.formBuilder.control(this.editUser?.phoneNumber, [Validators.required]),
+      city: this.formBuilder.control(this.editUser?.city),
+      street: this.formBuilder.control(this.editUser?.street),
+      houseNumber: this.formBuilder.control(this.editUser?.houseNumber),
+      province: this.formBuilder.control(this.editUser?.province),
+      postcode: this.formBuilder.control(this.editUser?.postcode),
+      country: this.formBuilder.control(this.editUser?.country),
       enabled: this.formBuilder.control(this.editUser?.enabled || true)
     });
   }
