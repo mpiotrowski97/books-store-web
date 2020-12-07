@@ -3,7 +3,7 @@ import {Category} from './category';
 import {CartItem} from './cart-item';
 
 export interface ContextInitResponse {
-  authUserModel: User;
+  currentLoggedUser: User;
   categories: Category[];
 }
 

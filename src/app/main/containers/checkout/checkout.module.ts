@@ -6,7 +6,7 @@ import { CartComponent } from './cart/cart.component';
 import { ShippingComponent } from './shipping/shipping.component';
 import { SummaryComponent } from './summary/summary.component';
 import {CoreModule} from '../../../core/core.module';
-import {FormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 
 @NgModule({
@@ -15,6 +15,7 @@ import {FormsModule} from '@angular/forms';
     CommonModule,
     CheckoutRoutingModule,
     CoreModule,
+    ReactiveFormsModule,
     FormsModule
   ]
 })

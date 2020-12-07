@@ -1,1 +1,104 @@
-<p>shipping works!</p>
+<bs-loader *ngIf="isLoading">
+</bs-loader>
+
+<form [formGroup]="form" (submit)="handleSubmitEvent()">
+  <div class="row" *ngIf="!isLoading">
+    <div class="col-md-12 border p-3">
+      <h5>Shipping address</h5>
+
+      <div class="form-row">
+        <div class="form-group col-md-8"
+             [ngClass]="{'form-group-error': form.get('street').touched && form.get('street').hasError('required')}">
+          <label for="street">Street
+            <bs-required-mark></bs-required-mark>
+          </label>
+          <input type="text" class="form-control" name="street" id="street" formControlName="street">
+          <small class="form-text text-danger"
+                 *ngIf="form.get('street').touched && form.get('street').hasError('required')">
+            Please enter a street
+          </small>
+        </div>
+
+        <div class="form-group col-md-4"
+             [ngClass]="{'form-group-error': form.get('houseNumber').touched && form.get('houseNumber').hasError('required')}">
+          <label for="houseNumber">House number
+            <bs-required-mark></bs-required-mark>
+          </label>
+          <input type="text" class="form-control" name="houseNumber" id="houseNumber" formControlName="houseNumber">
+          <small class="form-text text-danger"
+                 *ngIf="form.get('houseNumber').touched && form.get('houseNumber').hasError('required')">
+            Please enter a house number
+          </small>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group col-md-8"
+             [ngClass]="{'form-group-error': form.get('city').touched && form.get('city').hasError('required')}">
+          <label for="city">City
+            <bs-required-mark></bs-required-mark>
+          </label>
+          <input type="text" class="form-control" name="city" id="city" formControlName="city">
+          <small class="form-text text-danger"
+                 *ngIf="form.get('city').touched && form.get('city').hasError('required')">
+            Please enter a city
+          </small>
+        </div>
+
+        <div class="form-group col-md-4"
+             [ngClass]="{'form-group-error': form.get('postcode').touched && form.get('postcode').hasError('required')}">
+          <label for="postcode">Postcode
+            <bs-required-mark></bs-required-mark>
+          </label>
+          <input type="text" class="form-control" name="postcode" id="postcode" formControlName="postcode">
+          <small class="form-text text-danger"
+                 *ngIf="form.get('postcode').touched && form.get('postcode').hasError('required')">
+            Please enter a postcode
+          </small>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group col-md-6"
+             [ngClass]="{'form-group-error': form.get('province').touched && form.get('province').hasError('required')}">
+          <label for="province">Province
+            <bs-required-mark></bs-required-mark>
+          </label>
+          <input type="text" class="form-control" name="province" id="province" formControlName="province">
+          <small class="form-text text-danger"
+                 *ngIf="form.get('province').touched && form.get('province').hasError('required')">
+            Please enter a province
+          </small>
+        </div>
+
+        <div class="form-group col-md-6"
+             [ngClass]="{'form-group-error': form.get('country').touched && form.get('country').hasError('required')}">
+          <label for="country">Country
+            <bs-required-mark></bs-required-mark>
+          </label>
+          <input type="text" class="form-control" name="country" id="country" formControlName="country">
+          <small class="form-text text-danger"
+                 *ngIf="form.get('country').touched && form.get('country').hasError('required')">
+            Please enter a country
+          </small>
+        </div>
+      </div>
+
+      <h5>Shipping method</h5>
+
+      <div>
+        <div class="form-check pt-2 pb-2" *ngFor="let shippingMethod of shippingMethods">
+          <label class="form-check-label d-flex align-items-center">
+            <input type="radio" class="form-check-input" name="shipping-method" [id]="'shipping-method' + shippingMethod.id"
+                   [value]="shippingMethod.id">
+            {{ shippingMethod.name }}<strong class="text-danger ml-2">{{ shippingMethod.price | number }}$</strong>
+          </label>
+        </div>
+      </div>
+
+      <div class="mt-3 d-flex justify-content-end">
+        <a class="btn btn-primary" [routerLink]="['/', 'checkout', 'shipping']">Go to summary</a>
+      </div>
+    </div>
+  </div>
+</form>

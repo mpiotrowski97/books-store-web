@@ -14,6 +14,10 @@ export class AuthService {
   constructor(private http: HttpClient) {
   }
 
+  public getLoggedUser(): User {
+    return this.loggedUser;
+  }
+
   public verifyUser(token: string): Observable<any> {
     return this.http.post('auth/user-verification', {
       code: token
@@ -34,10 +38,6 @@ export class AuthService {
 
   public isAuthenticated(): BehaviorSubject<boolean> {
     return this.authenticated;
-  }
-
-  public isUserLoggedIn(): boolean {
-    return !!this.loggedUser;
   }
 
   public getRoles(): BehaviorSubject<string[]> {

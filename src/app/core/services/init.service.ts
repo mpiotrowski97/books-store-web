@@ -20,7 +20,7 @@ export class InitService {
     return this.http.get<ContextInitResponse>('context/init')
       .pipe(
         tap(response => {
-          this.authService.setLoggedUser(response.authUserModel);
+          this.authService.setLoggedUser(response.currentLoggedUser);
           this.categoriesService.pushCategories(response.categories);
         })
       );
