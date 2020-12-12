@@ -7,16 +7,19 @@ import { ShippingComponent } from './shipping/shipping.component';
 import { SummaryComponent } from './summary/summary.component';
 import {CoreModule} from '../../../core/core.module';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { CheckoutComponent } from './checkout.component';
+import {MainModule} from '../../main.module';
 
 
 @NgModule({
-  declarations: [CartComponent, ShippingComponent, SummaryComponent],
+  declarations: [CartComponent, ShippingComponent, SummaryComponent, CheckoutComponent],
   imports: [
     CommonModule,
     CheckoutRoutingModule,
     CoreModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    MainModule
   ]
 })
 export class CheckoutModule { }

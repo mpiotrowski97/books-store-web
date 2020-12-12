@@ -1,0 +1,21 @@
+<div class="mb-5 d-flex w-50 mb-5 mr-auto ml-auto flex-row justify-content-between">
+  <bs-checkout-navigation-item
+    [label]="'Cart'"
+    [path]="'/checkout/cart'"
+    [active]="'/checkout/cart' === currentRoutePath"
+    [past]="'/checkout/shipping' === currentRoutePath || '/checkout/summary' === currentRoutePath">
+  </bs-checkout-navigation-item>
+  <span>-</span>
+  <bs-checkout-navigation-item
+    [label]="'Shipping'"
+    [path]="'/checkout/shipping'"
+    [active]="'/checkout/shipping' === currentRoutePath"
+    [past]="'/checkout/summary' === currentRoutePath">
+  </bs-checkout-navigation-item>
+  <span>-</span>
+  <bs-checkout-navigation-item
+    [label]="'Summary'"
+    [path]="'/checkout/summary'"
+    [active]="'/checkout/summary' === currentRoutePath">
+  </bs-checkout-navigation-item>
+</div>

@@ -6,9 +6,14 @@ import {IvyCarouselModule} from 'angular-responsive-carousel';
 import { BooksCarouselComponent } from './components/books-carousel/books-carousel.component';
 import {CoreModule} from '../core/core.module';
 import { BookCardComponent } from './components/book-card/book-card.component';
+import { CheckoutNavigationComponent } from './components/checkout-navigation/checkout-navigation.component';
+import { CheckoutNavigationItemComponent } from './components/checkout-navigation/checkout-navigation-item/checkout-navigation-item.component';
 
 @NgModule({
-  declarations: [HomeComponent, BooksCarouselComponent, BookCardComponent],
+  declarations: [HomeComponent, BooksCarouselComponent, BookCardComponent, CheckoutNavigationComponent, CheckoutNavigationItemComponent],
+  exports: [
+    CheckoutNavigationComponent
+  ],
   imports: [
     CommonModule,
     MainRoutingModule,
