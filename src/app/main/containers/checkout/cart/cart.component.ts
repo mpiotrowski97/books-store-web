@@ -1,7 +1,10 @@
 import {Component, OnInit} from '@angular/core';
 import {CartService} from '../../../services/cart.service';
 import {CartItem} from '../../../../core/models/cart-item';
-import {finalize} from 'rxjs/operators';
+import {Store} from '@ngrx/store';
+import {CartState} from '../../../store/cart.reducer';
+import {Observable} from 'rxjs';
+import {removeCartItemAction} from '../../../store/cart.actions';
 
 @Component({
   selector: 'bs-cart',
@@ -12,25 +15,24 @@ export class CartComponent implements OnInit {
   public isLoading = true;
   public items: CartItem[] = [];
   public value: number;
+  public cart$: Observable<CartState>;
 
-  constructor(private cartService: CartService) {
+  constructor(
+    private cartService: CartService,
+    private store: Store<{cart: CartState}>
+  ) {
   }
 
   ngOnInit(): void {
+    this.cart$ = this.store.select('cart');
     this.getSummary();
   }
 
   public getSummary(): void {
     this.isLoading = true;
+  }
 
-    this.cartService
-      .getSummary()
-      .pipe(
-        finalize(() => this.isLoading = false)
-      )
-      .subscribe(response => {
-        this.items = response.items;
-        this.value = response.value;
-      });
+  handleRemoveItemClick(cartItem: CartItem): void {
+    this.store.dispatch(removeCartItemAction({removedItem: cartItem}));
   }
 }

@@ -3,6 +3,10 @@ import {Book} from '../../../core/models/book';
 import {CartService} from '../../../dashboard/services/cart.service';
 import {finalize} from 'rxjs/operators';
 import {NotificationsService} from '../../../core/services/notifications.service';
+import {Store} from '@ngrx/store';
+import {CartState} from '../../store/cart.reducer';
+import {Observable} from 'rxjs';
+import {addCartItemAction} from '../../store/cart.actions';
 
 @Component({
   selector: 'bs-book-card',
@@ -15,9 +19,12 @@ export class BookCardComponent implements OnInit {
 
   public isProcessing = false;
 
+  cart: Observable<CartState>;
+
   constructor(
     private cartService: CartService,
-    private notificationsService: NotificationsService
+    private notificationsService: NotificationsService,
+    private store: Store<{  cart: CartState }>
   ) {
   }
 
@@ -26,6 +33,14 @@ export class BookCardComponent implements OnInit {
 
   handleAddToCartClick(): void {
     this.isProcessing = true;
+
+    this.store.dispatch(addCartItemAction({newItem: {
+      id: this.book.isbn,
+      bookTitle: this.book.title,
+      bookPrice: +this.book.price,
+      quantity: 1,
+      value: +this.book.price
+    }}));
 
     this.cartService
       .addToCart(this.book.isbn)

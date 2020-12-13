@@ -9,6 +9,7 @@ import { BookCardComponent } from './components/book-card/book-card.component';
 import { CheckoutNavigationComponent } from './components/checkout-navigation/checkout-navigation.component';
 import { CheckoutNavigationItemComponent } from './components/checkout-navigation/checkout-navigation-item/checkout-navigation-item.component';
 
+
 @NgModule({
   declarations: [HomeComponent, BooksCarouselComponent, BookCardComponent, CheckoutNavigationComponent, CheckoutNavigationItemComponent],
   exports: [
@@ -18,7 +19,7 @@ import { CheckoutNavigationItemComponent } from './components/checkout-navigatio
     CommonModule,
     MainRoutingModule,
     IvyCarouselModule,
-    CoreModule
+    CoreModule,
   ]
 })
 export class MainModule { }

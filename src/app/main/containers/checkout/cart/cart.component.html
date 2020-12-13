@@ -1,6 +1,4 @@
-<bs-loader *ngIf="isLoading"></bs-loader>
-
-<div class="row" *ngIf="!isLoading">
+<div class="row">
   <div class="col-md-8 border p-3">
     <table class="table">
       <thead>
@@ -9,10 +7,11 @@
         <th>Price</th>
         <th>Count</th>
         <th>Value</th>
+        <th></th>
       </tr>
       </thead>
       <tbody>
-      <tr *ngFor="let cartItem of items">
+      <tr *ngFor="let cartItem of (cart$ | async).items ">
         <td class="flex">
           <div>
             <img
@@ -28,6 +27,9 @@
           </div>
         </td>
         <td>{{ cartItem.value | number }}$</td>
+        <td>
+          <button type="button" class="btn btn-outline-danger" (click)="handleRemoveItemClick(cartItem)">Remove</button>
+        </td>
       </tr>
       </tbody>
     </table>
