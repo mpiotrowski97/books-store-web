@@ -1,5 +1,5 @@
 <div class="font-weight-bold text-uppercase">
-  <a [routerLink]="path" routerLinkActive="text-success" [class.text-info]="past">
+  <a [routerLink]="path" routerLinkActive="text-success" [class.link-disabled]="!active && !past" [class.text-info]="past">
     {{ label }}
   </a>
 </div>
