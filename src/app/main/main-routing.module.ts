@@ -3,6 +3,8 @@ import {RouterModule, Routes} from '@angular/router';
 import {HomeComponent} from './containers/home/home.component';
 import {CheckoutGuard} from './guards/checkout.guard';
 import {BookPreviewComponent} from './containers/book-preview/book-preview.component';
+import {CategoryArchiveComponent} from './containers/category-archive/category-archive.component';
+import {UserProfileComponent} from './containers/user-profile/user-profile.component';
 
 const routes: Routes = [
   {
@@ -18,6 +20,14 @@ const routes: Routes = [
   {
     path: 'book/:isbn',
     component: BookPreviewComponent
+  },
+  {
+    path: 'category/:id',
+    component: CategoryArchiveComponent
+  },
+  {
+    path: 'profile',
+    component: UserProfileComponent
   }
 ];
 

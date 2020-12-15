@@ -1,0 +1,13 @@
+<section>
+  <div class="row">
+    <div class="col-md-12">
+      <h3>{{ category.name }}</h3>
+    </div>
+  </div>
+
+  <div class="row">
+      <div class="col-md-4 mt-3" *ngFor="let book of books">
+        <bs-book-card [book]="book"></bs-book-card>
+      </div>
+  </div>
+</section>

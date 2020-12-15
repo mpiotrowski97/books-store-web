@@ -10,6 +10,8 @@ import {CheckoutNavigationComponent} from './components/checkout-navigation/chec
 import {CheckoutNavigationItemComponent} from './components/checkout-navigation/checkout-navigation-item/checkout-navigation-item.component';
 import {BookPreviewComponent} from './containers/book-preview/book-preview.component';
 import {RatingModule} from 'ng-starrating';
+import { CategoryArchiveComponent } from './containers/category-archive/category-archive.component';
+import { UserProfileComponent } from './containers/user-profile/user-profile.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +20,9 @@ import {RatingModule} from 'ng-starrating';
     BookCardComponent,
     CheckoutNavigationComponent,
     CheckoutNavigationItemComponent,
-    BookPreviewComponent
+    BookPreviewComponent,
+    CategoryArchiveComponent,
+    UserProfileComponent
   ],
   exports: [
     CheckoutNavigationComponent

@@ -11,7 +11,7 @@
       </tr>
       </thead>
       <tbody>
-      <tr *ngFor="let cartItem of (cart$ | async).items ">
+      <tr *ngFor="let cartItem of (cart$ | async).items">
         <td class="flex">
           <div>
             <img
@@ -28,7 +28,7 @@
         </td>
         <td>{{ cartItem.value | number }}$</td>
         <td>
-          <button type="button" class="btn btn-outline-danger" (click)="handleRemoveItemClick(cartItem)">Remove</button>
+          <button type="button" class="btn btn-outline-danger" (click)="handleRemoveItemClick (cartItem)">Remove</button>
         </td>
       </tr>
       </tbody>

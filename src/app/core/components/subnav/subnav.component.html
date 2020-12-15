@@ -2,7 +2,8 @@
   <div class="col-md-12">
     <div class="container">
       <div class="nav navbar-nav">
-        <a class="nav-item nav-link" *ngFor="let category of categories$ | async">
+        <a [routerLink]="['/', 'category', category.id]" routerLinkActive="active" class="nav-item nav-link"
+           *ngFor="let category of categories$ | async">
           {{ category.name }}
         </a>
       </div>

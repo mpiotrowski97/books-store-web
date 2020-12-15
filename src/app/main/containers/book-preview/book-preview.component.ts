@@ -13,7 +13,9 @@ export class BookPreviewComponent implements OnInit {
     title: 'Edukacja',
     description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cumque deleniti dolorem maiores neque rerum! A ab amet aspernatur cum error eum eveniet fuga laboriosam, nam natus neque non odit officiis quam rem repellat repudiandae sapiente sint unde veniam. Ab accusantium consectetur delectus, exercitationem in iure molestias odit repellendus sed veritatis!',
     author: 'Malcolm XD',
-    price: '31.99'
+    price: '31.99',
+    category: 'Adventure',
+    publishedBy: 'WAB'
   };
 
   public reviews: Review[] = [

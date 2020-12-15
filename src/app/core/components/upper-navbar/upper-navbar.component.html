@@ -10,6 +10,10 @@
            routerLinkActive="active">
           Sign up
         </a>
+        <a *bsAuthenticated="true" class="nav-item nav-link p-1" [routerLink]="['/', 'profile']"
+           routerLinkActive="active">
+          My profile
+        </a>
         <a *bsHasRole="'ROLE_ADMINISTRATOR'" class="nav-item nav-link p-1" [routerLink]="['dashboard']"
            routerLinkActive="active">
           Dashboard

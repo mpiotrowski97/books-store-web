@@ -19,6 +19,14 @@
           <td class="border-0">{{ book.isbn }}</td>
         </tr>
         <tr>
+          <td class="font-weight-bold border-0">Category</td>
+          <td class="border-0">{{ book.category }}</td>
+        </tr>
+        <tr>
+          <td class="font-weight-bold border-0">Published By</td>
+          <td class="border-0">{{ book.publishedBy }}</td>
+        </tr>
+        <tr>
           <td class="border-0 font-weight-bold">Price</td>
           <td class="border-0 font-weight-bold text-danger">
             {{ book.price | number }} $
