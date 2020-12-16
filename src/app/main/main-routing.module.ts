@@ -27,7 +27,7 @@ const routes: Routes = [
   },
   {
     path: 'profile',
-    component: UserProfileComponent
+    loadChildren: () => import('./containers/user-profile/user-profile.module').then(m => m.UserProfileModule)
   }
 ];
 
