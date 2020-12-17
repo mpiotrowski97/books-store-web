@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import {UserProfileComponent} from './user-profile.component';
 import {UserShelvesComponent} from './user-shelves/user-shelves.component';
 import {UserOrdersComponent} from './user-orders/user-orders.component';
+import {CommunityListComponent} from './community-list/community-list.component';
 
 const routes: Routes = [
   {
@@ -16,6 +17,10 @@ const routes: Routes = [
       {
         path: 'orders',
         component: UserOrdersComponent
+      },
+      {
+        path: 'community',
+        component: CommunityListComponent
       }
     ]
   }

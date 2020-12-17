@@ -44,7 +44,22 @@
         {{ book.description }}
       </p>
 
-      <button type="button" class="btn btn-success">Add to cart</button>
+      <div class="d-flex flex-row">
+        <div class="input-group w-50">
+          <select class="custom-select" id="inputGroupSelect04">
+            <option selected>Shelves...</option>
+            <option value="1">Favourites</option>
+            <option value="2">Likes</option>
+            <option value="3">To read</option>
+          </select>
+          <div class="input-group-append">
+            <button class="btn btn-info" type="button">Add to shelf</button>
+          </div>
+        </div>
+
+        <button type="button" class="btn btn-success ml-3">Add to cart</button>
+      </div>
+
     </div>
   </div>
 </section>

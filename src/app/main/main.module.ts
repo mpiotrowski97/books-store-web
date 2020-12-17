@@ -12,6 +12,7 @@ import {BookPreviewComponent} from './containers/book-preview/book-preview.compo
 import {RatingModule} from 'ng-starrating';
 import { CategoryArchiveComponent } from './containers/category-archive/category-archive.component';
 import { UserProfileComponent } from './containers/user-profile/user-profile.component';
+import { ShelfPreviewComponent } from './containers/shelf-preview/shelf-preview.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { UserProfileComponent } from './containers/user-profile/user-profile.com
     CheckoutNavigationItemComponent,
     BookPreviewComponent,
     CategoryArchiveComponent,
-    UserProfileComponent
+    UserProfileComponent,
+    ShelfPreviewComponent
   ],
   exports: [
     CheckoutNavigationComponent

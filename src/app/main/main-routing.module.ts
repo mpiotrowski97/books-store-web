@@ -5,6 +5,7 @@ import {CheckoutGuard} from './guards/checkout.guard';
 import {BookPreviewComponent} from './containers/book-preview/book-preview.component';
 import {CategoryArchiveComponent} from './containers/category-archive/category-archive.component';
 import {UserProfileComponent} from './containers/user-profile/user-profile.component';
+import {ShelfPreviewComponent} from './containers/shelf-preview/shelf-preview.component';
 
 const routes: Routes = [
   {
@@ -28,6 +29,10 @@ const routes: Routes = [
   {
     path: 'profile',
     loadChildren: () => import('./containers/user-profile/user-profile.module').then(m => m.UserProfileModule)
+  },
+  {
+    path: 'shelves/:id',
+    component: ShelfPreviewComponent
   }
 ];
 
