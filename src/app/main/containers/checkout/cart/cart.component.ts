@@ -1,9 +1,9 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {CartService} from '../../../services/cart.service';
 import {CartItem} from '../../../../core/models/cart-item';
 import {Store} from '@ngrx/store';
 import {CartState} from '../../../store/cart.reducer';
-import {Observable} from 'rxjs';
+import { Subscription} from 'rxjs';
 import {removeCartItemAction} from '../../../store/cart.actions';
 
 @Component({
@@ -11,11 +11,11 @@ import {removeCartItemAction} from '../../../store/cart.actions';
   templateUrl: './cart.component.html',
   styleUrls: ['./cart.component.scss']
 })
-export class CartComponent implements OnInit {
+export class CartComponent implements OnInit, OnDestroy {
   public isLoading = true;
   public items: CartItem[] = [];
   public value: number;
-  public cart$: Observable<CartState>;
+  public cartSubscription: Subscription;
 
   constructor(
     private cartService: CartService,
@@ -24,7 +24,11 @@ export class CartComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.cart$ = this.store.select('cart');
+    this.cartSubscription = this.store.select('cart').subscribe(cartState => {
+      this.items = cartState.items;
+      this.value = cartState.value;
+    });
+
     this.getSummary();
   }
 
@@ -34,5 +38,11 @@ export class CartComponent implements OnInit {
 
   handleRemoveItemClick(cartItem: CartItem): void {
     this.store.dispatch(removeCartItemAction({removedItem: cartItem}));
+  }
+
+  ngOnDestroy(): void {
+    if (this.cartSubscription) {
+      this.cartSubscription.unsubscribe();
+    }
   }
 }
