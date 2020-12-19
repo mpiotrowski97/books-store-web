@@ -1,13 +1,17 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {Category} from '../../../core/models/category';
 import {Book} from '../../../core/models/book';
+import {ActivatedRoute} from '@angular/router';
+import {Subscription} from 'rxjs';
 
 @Component({
   selector: 'bs-category-archive',
   templateUrl: './category-archive.component.html',
   styleUrls: ['./category-archive.component.scss']
 })
-export class CategoryArchiveComponent implements OnInit {
+export class CategoryArchiveComponent implements OnInit, OnDestroy {
+  public categoryName: string;
+
   public category: Category = {
     id: '1',
     name: 'Adventure'
@@ -96,11 +100,19 @@ export class CategoryArchiveComponent implements OnInit {
       title: 'Voluptatem'
     }
   ];
+  private categoryNameSubscription: Subscription;
 
-  constructor() {
+  constructor(private route: ActivatedRoute) {
   }
 
   ngOnInit(): void {
+    this.categoryNameSubscription = this.route.paramMap.subscribe(params => {
+      this.categoryName = params.get('id');
+    });
+  }
+
+  ngOnDestroy(): void {
+    this.categoryNameSubscription.unsubscribe();
   }
 
 }

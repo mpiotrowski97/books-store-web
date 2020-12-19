@@ -8,28 +8,12 @@ import {finalize} from 'rxjs/operators';
   providedIn: 'root'
 })
 export class CartService {
-  public cartSubject = new BehaviorSubject<CartSummaryResponse>(null);
-  public isCartLoadingSubject = new BehaviorSubject<boolean>(false);
-
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {
+  }
 
   public getSummary(): void {
-    this.isCartLoadingSubject.next(true);
-
     this
       .http
-      .get<CartSummaryResponse>('cart/summary')
-      .pipe(
-        finalize(() => this.isCartLoadingSubject.next(false))
-      )
-      .subscribe(response => this.cartSubject.next(response));
-  }
-
-  public getCartSubject(): BehaviorSubject<CartSummaryResponse> {
-    return this.cartSubject;
-  }
-
-  public getIsCartLoadingSubject(): BehaviorSubject<boolean> {
-    return this.isCartLoadingSubject;
+      .get<CartSummaryResponse>('cart/summary');
   }
 }

@@ -32,7 +32,7 @@
             {{ book.price | number }} $
           </td>
         </tr>
-        <tr>
+        <tr *bsAuthenticated="true">
           <td class="border-0" colspan="2">
             <star-rating [value]="3.5" [totalstars]="5" [checkedcolor]="'gold'" [uncheckedcolor]="'lightgray'" size="30px" [readonly]="false" (rate)="handleRateClick()"></star-rating>
           </td>
@@ -44,7 +44,7 @@
         {{ book.description }}
       </p>
 
-      <div class="d-flex flex-row">
+      <div class="d-flex flex-row" *bsAuthenticated="true">
         <div class="input-group w-50">
           <select class="custom-select" id="inputGroupSelect04">
             <option selected>Shelves...</option>
@@ -68,7 +68,7 @@
     <div class="col-md-12">
       <h3>Reviews</h3>
 
-      <form>
+      <form *bsAuthenticated="true">
         <div class="form-group">
           <label for="review-content">Your review</label>
           <textarea class="form-control" id="review-content" rows="5"></textarea>
