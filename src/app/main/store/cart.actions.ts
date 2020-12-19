@@ -14,7 +14,7 @@ export const loadCartAction = createAction(
 
 export const loadCartSuccessAction = createAction(
   CartActionsTypes.LOAD_CART_SUCCESS,
-  props<CartSummaryResponse>()
+  props<{ cartSummary: CartSummaryResponse }>()
 );
 
 export const loadCartFailureAction = createAction(

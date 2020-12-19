@@ -9,6 +9,8 @@ import {BaseHrefInterceptor} from './core/interceptors/base-href.interceptor';
 import {ApplicationErrorsInterceptor} from './core/interceptors/application-errors.interceptor';
 import {StoreModule} from '@ngrx/store';
 import {reducer} from './main/store/cart.reducer';
+import {EffectsModule} from '@ngrx/effects';
+import {CartEffects} from './main/store/cart.effects';
 
 @NgModule({
   declarations: [
@@ -20,7 +22,8 @@ import {reducer} from './main/store/cart.reducer';
     CoreModule,
     HttpClientModule,
     HttpClientXsrfModule,
-    StoreModule.forRoot({cart: reducer})
+    StoreModule.forRoot({cart: reducer}),
+    EffectsModule.forRoot([CartEffects])
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: BaseHrefInterceptor, multi: true},

@@ -8,28 +8,15 @@ import {AuthService} from '../../../auth/services/auth.service';
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss']
 })
-export class HeaderComponent implements OnDestroy, OnInit {
-  public isCartLoading: boolean;
-  public cartLoadingSubscription: Subscription;
+export class HeaderComponent implements OnInit {
+  public isCartLoading = false;
 
   public cartValue: number;
-  public cartValueSubscription: Subscription;
 
   constructor(private cartService: CartService, private authService: AuthService) {
   }
 
-  ngOnDestroy(): void {
-    if (this.cartLoadingSubscription) {
-      this.cartLoadingSubscription.unsubscribe();
-    }
-
-    if (this.cartValueSubscription) {
-      this.cartValueSubscription.unsubscribe();
-    }
-  }
-
   ngOnInit(): void {
-    this.cartLoadingSubscription = this.cartService.getIsCartLoadingSubject().subscribe(isLoading => this.isCartLoading = isLoading);
   }
 
 }

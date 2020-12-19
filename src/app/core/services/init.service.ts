@@ -24,10 +24,6 @@ export class InitService {
         tap(response => {
           this.authService.setLoggedUser(response.currentLoggedUser);
           this.categoriesService.pushCategories(response.categories);
-
-          if (!!response.currentLoggedUser) {
-            this.cartService.getSummary();
-          }
         })
       );
   }

@@ -11,8 +11,8 @@ export class CartService {
   constructor(private http: HttpClient) {
   }
 
-  public getSummary(): void {
-    this
+  public getSummary(): Observable<CartSummaryResponse> {
+    return this
       .http
       .get<CartSummaryResponse>('cart/summary');
   }

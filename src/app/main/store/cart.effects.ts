@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {Actions, createEffect, ofType} from '@ngrx/effects';
 import {CartService} from '../services/cart.service';
-import {map, mapTo, mergeMap} from 'rxjs/operators';
+import {map, switchMap, tap} from 'rxjs/operators';
 import {Action} from '@ngrx/store';
 import {Observable} from 'rxjs';
 import {CartActionsTypes, loadCartSuccessAction} from './cart.actions';
@@ -11,9 +11,9 @@ export class CartEffects {
 
   loadCart$: Observable<Action> = createEffect(() => this.actions$.pipe(
     ofType<Action>(CartActionsTypes.LOAD_CART),
-    mergeMap(() => this.cartService.getSummary()
+    switchMap(() => this.cartService.getSummary()
       .pipe(
-        map(data => loadCartSuccessAction(data))
+        map(data => loadCartSuccessAction({cartSummary: data}))
       ))
     )
   );
