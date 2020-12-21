@@ -4,9 +4,9 @@ import {CartService} from '../../../dashboard/services/cart.service';
 import {finalize} from 'rxjs/operators';
 import {NotificationsService} from '../../../core/services/notifications.service';
 import {Store} from '@ngrx/store';
-import {CartState} from '../../store/cart.reducer';
+import {CartState} from '../../store/cart/cart.reducer';
 import {Observable} from 'rxjs';
-import {addCartItemAction} from '../../store/cart.actions';
+import {addCartItemAction} from '../../store/cart/cart.actions';
 
 @Component({
   selector: 'bs-book-card',

@@ -2,9 +2,9 @@ import {Component, OnDestroy, OnInit} from '@angular/core';
 import {CartService} from '../../../services/cart.service';
 import {CartItem} from '../../../../core/models/cart-item';
 import {Store} from '@ngrx/store';
-import {CartState} from '../../../store/cart.reducer';
+import {CartState} from '../../../store/cart/cart.reducer';
 import { Subscription} from 'rxjs';
-import {removeCartItemAction} from '../../../store/cart.actions';
+import {removeCartItemAction} from '../../../store/cart/cart.actions';
 
 @Component({
   selector: 'bs-cart',

@@ -1,7 +1,7 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {Subscription} from 'rxjs';
 import {Store} from '@ngrx/store';
-import {CartState} from '../../../store/cart.reducer';
+import {CartState} from '../../../store/cart/cart.reducer';
 import {CartItem} from '../../../../core/models/cart-item';
 
 @Component({

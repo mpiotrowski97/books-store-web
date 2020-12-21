@@ -1,4 +1,4 @@
-<ng-container *ngIf="ready">
+<ng-container *ngIf="ready$ | async; else loader">
   <bs-upper-navbar></bs-upper-navbar>
   <bs-header></bs-header>
   <bs-subnav *bsHideInCheckout></bs-subnav>
@@ -7,11 +7,12 @@
     <bs-notifications></bs-notifications>
     <router-outlet></router-outlet>
   </div>
-
 </ng-container>
+<ng-template #loader>
+  <bs-application-loader></bs-application-loader>
+</ng-template>
 
 <bs-application-error *ngIf="errorExists"></bs-application-error>
 
-<bs-application-loader *ngIf="!ready"></bs-application-loader>
 
 <bs-footer></bs-footer>

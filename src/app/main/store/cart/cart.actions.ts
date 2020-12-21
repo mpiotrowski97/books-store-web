@@ -1,6 +1,6 @@
 import {createAction, props} from '@ngrx/store';
-import {CartItem} from '../../core/models/cart-item';
-import {CartSummaryResponse} from '../../core/models/api-response';
+import {CartItem} from '../../../core/models/cart-item';
+import {CartSummaryResponse} from '../../../core/models/api-response';
 
 export enum CartActionsTypes {
   LOAD_CART = '[CART] Load Cart',
