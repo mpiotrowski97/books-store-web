@@ -7,15 +7,7 @@ import {User} from '../../core/models/user';
   providedIn: 'root'
 })
 export class AuthService {
-  private loggedUser: User;
-  private authenticated: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
-  private roles: BehaviorSubject<string[]> = new BehaviorSubject<string[]>([]);
-
   constructor(private http: HttpClient) {
-  }
-
-  public getLoggedUser(): User {
-    return this.loggedUser;
   }
 
   public verifyUser(token: string): Observable<any> {
@@ -34,28 +26,5 @@ export class AuthService {
     return this.http.post('auth/reset-password', {
       code, password
     });
-  }
-
-  public isAuthenticated(): BehaviorSubject<boolean> {
-    return this.authenticated;
-  }
-
-  public getRoles(): BehaviorSubject<string[]> {
-    return this.roles;
-  }
-
-  public setLoggedUser(user: User): void {
-    this.loggedUser = user;
-    this.authenticated.next(!!user);
-    this.roles.next(user?.roles);
-  }
-
-
-  public hasRole(role: string): boolean {
-    if (!this.loggedUser?.roles) {
-      return false;
-    }
-
-    return this.loggedUser.roles.includes(role);
   }
 }

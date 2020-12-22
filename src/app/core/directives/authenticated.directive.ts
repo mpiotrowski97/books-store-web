@@ -1,7 +1,8 @@
 import {Directive, Input, OnDestroy, OnInit, TemplateRef, ViewContainerRef} from '@angular/core';
-import {AuthService} from '../../auth/services/auth.service';
 import {Subscription} from 'rxjs';
 import {map} from 'rxjs/operators';
+import {Store} from '@ngrx/store';
+import {isAuthenticatedSelector} from '../../auth/store/auth.reducer';
 
 @Directive({
   selector: '[bsAuthenticated]'
@@ -14,8 +15,8 @@ export class AuthenticatedDirective implements OnInit, OnDestroy {
 
   constructor(
     private templateRef: TemplateRef<any>,
-    private authService: AuthService,
-    private viewContainer: ViewContainerRef
+    private viewContainer: ViewContainerRef,
+    private store: Store
   ) {
   }
 
@@ -26,8 +27,8 @@ export class AuthenticatedDirective implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.authenticatedSubscription = this.authService
-      .isAuthenticated()
+    this.authenticatedSubscription = this.store
+      .select(isAuthenticatedSelector)
       .pipe(
         map(isAuthenticated => isAuthenticated && this.bsAuthenticated || !isAuthenticated && !this.bsAuthenticated)
       )

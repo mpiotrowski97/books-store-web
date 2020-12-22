@@ -1,7 +1,8 @@
 import {Directive, Input, OnDestroy, OnInit, TemplateRef, ViewContainerRef} from '@angular/core';
-import {AuthService} from '../../auth/services/auth.service';
 import {Subscription} from 'rxjs';
 import {map} from 'rxjs/operators';
+import {Store} from '@ngrx/store';
+import {rolesSelector} from '../../auth/store/auth.reducer';
 
 @Directive({
   selector: '[bsHasRole]'
@@ -14,7 +15,7 @@ export class HasRoleDirective implements OnInit, OnDestroy {
   private role: string;
 
   constructor(
-    private authService: AuthService,
+    private store: Store,
     private templateRef: TemplateRef<any>,
     private viewContainer: ViewContainerRef
   ) {
@@ -24,8 +25,8 @@ export class HasRoleDirective implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.rolesSubscription = this.authService
-      .getRoles()
+    this.rolesSubscription = this.store
+      .select(rolesSelector)
       .pipe(
         map(roles => !!roles ? roles : []),
         map(roles => roles.includes(this.role))

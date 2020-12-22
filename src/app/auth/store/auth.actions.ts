@@ -2,8 +2,8 @@ import {createAction, props} from '@ngrx/store';
 import {User} from '../../core/models/user';
 
 export enum AuthActionsTypes {
-  SET_LOGGED_USER = '[AUTH] Set logged user action',
-  SET_ROLES = '[AUTH] Set roles'
+  LOGIN_USER = '[AUTH] Login user',
+  SET_LOGGED_USER = '[AUTH] Set logged user action'
 }
 
 export const setLoggedUserAction = createAction(
@@ -11,7 +11,7 @@ export const setLoggedUserAction = createAction(
   props<{ loggedUser: User }>()
 );
 
-export const setRoles = createAction(
-  AuthActionsTypes.SET_ROLES,
-  props<{ roles: string[] }>()
+export const loginUserAction = createAction(
+  AuthActionsTypes.LOGIN_USER,
+  props<{username: string, password: string}>()
 );

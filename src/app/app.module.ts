@@ -15,6 +15,7 @@ import {coreReducer} from './core/store/core.reducer';
 import {MainEffects} from './main/store/main.effects';
 import {mainReducer} from './main/store/main.reducer';
 import {authReducer} from './auth/store/auth.reducer';
+import {AuthEffects} from './auth/store/auth.effects';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,7 @@ import {authReducer} from './auth/store/auth.reducer';
     HttpClientModule,
     HttpClientXsrfModule,
     StoreModule.forRoot({cart: reducer, core: coreReducer, main: mainReducer, auth: authReducer}),
-    EffectsModule.forRoot([CartEffects, MainEffects])
+    EffectsModule.forRoot([CartEffects, MainEffects, AuthEffects])
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: BaseHrefInterceptor, multi: true},

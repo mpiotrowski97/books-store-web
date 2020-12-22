@@ -1,16 +1,17 @@
 import { Injectable } from '@angular/core';
-import {CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree, Router} from '@angular/router';
+import {CanActivate} from '@angular/router';
 import { Observable } from 'rxjs';
-import {AuthService} from '../../auth/services/auth.service';
+import {Store} from '@ngrx/store';
+import {isAuthenticatedSelector} from '../../auth/store/auth.reducer';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CheckoutGuard implements CanActivate {
-  constructor(private authService: AuthService, private router: Router) {
+  constructor(private store: Store) {
   }
 
-  canActivate(): boolean | UrlTree {
-    return this.authService.isAuthenticated().getValue() || this.router.createUrlTree(['/']);
+  canActivate(): Observable<boolean> {
+    return this.store.select(isAuthenticatedSelector);
   }
 }

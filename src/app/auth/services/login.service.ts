@@ -2,8 +2,6 @@ import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs';
 import {HttpClient} from '@angular/common/http';
 import {LoginModelResponse} from '../../core/models/api-response';
-import {AuthService} from './auth.service';
-import {tap} from 'rxjs/operators';
 import {RegisterUserRequest} from '../../core/models/api-request';
 
 @Injectable({
@@ -11,7 +9,7 @@ import {RegisterUserRequest} from '../../core/models/api-request';
 })
 export class LoginService {
 
-  constructor(private http: HttpClient, private authService: AuthService) {
+  constructor(private http: HttpClient) {
   }
 
   login(username: string, password: string): Observable<LoginModelResponse> {
@@ -19,12 +17,7 @@ export class LoginService {
       headers: {
         authorization: `Basic ${btoa(`${username}:${password}`)}`
       }
-    })
-      .pipe(
-        tap((response) => {
-          this.authService.setLoggedUser(response.user);
-        })
-      );
+    });
   }
 
   register(registerRequest: RegisterUserRequest): Observable<any> {
