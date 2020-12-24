@@ -1,6 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {Notification} from '../../models/notification';
-import {NotificationsService} from '../../services/notifications.service';
+import {Store} from '@ngrx/store';
+import {removeNotificationAction} from '../../../main/store/notifications/notifications.actions';
 
 @Component({
   selector: 'bs-notification',
@@ -12,7 +13,7 @@ export class NotificationComponent implements OnInit {
   @Input()
   public notification: Notification;
 
-  constructor(private notificationsService: NotificationsService) {
+  constructor(private store: Store) {
   }
 
   ngOnInit(): void {
@@ -24,6 +25,6 @@ export class NotificationComponent implements OnInit {
   }
 
   closeNotification(): void {
-    this.notificationsService.removeNotification(this.notification);
+    this.store.dispatch(removeNotificationAction({notification: this.notification}));
   }
 }

@@ -2,8 +2,9 @@ import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {ConfirmationValidator} from '../../validators/confirmation.validator';
 import {Router} from '@angular/router';
-import {NotificationsService} from '../../../core/services/notifications.service';
 import {LoginService} from '../../services/login.service';
+import {Store} from '@ngrx/store';
+import {addSuccessNotificationAction} from '../../../main/store/notifications/notifications.actions';
 
 @Component({
   selector: 'bs-register',
@@ -16,8 +17,8 @@ export class RegisterComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private router: Router,
-    private notificationsService: NotificationsService,
-    private loginService: LoginService
+    private loginService: LoginService,
+    private store: Store
   ) {
   }
 
@@ -48,9 +49,9 @@ export class RegisterComponent implements OnInit {
       .subscribe(
         () => {
           this.router.navigate(['auth', 'login']).then(() => {
-            this.notificationsService.addSuccessNotification(
-              'Założyliśmy konto. Na twoją skrzynke wysłaliśmy instrukcje odnośnie aktywacji konta'
-            );
+            this.store.dispatch(addSuccessNotificationAction({
+              content: 'Założyliśmy konto. Na twoją skrzynke wysłaliśmy instrukcje odnośnie aktywacji konta'
+            }));
           });
         }
       );

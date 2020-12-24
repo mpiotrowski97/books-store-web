@@ -1,8 +1,8 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import {BrowserModule} from '@angular/platform-browser';
+import {NgModule} from '@angular/core';
 
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
+import {AppRoutingModule} from './app-routing.module';
+import {AppComponent} from './app.component';
 import {CoreModule} from './core/core.module';
 import {HTTP_INTERCEPTORS, HttpClientModule, HttpClientXsrfModule} from '@angular/common/http';
 import {BaseHrefInterceptor} from './core/interceptors/base-href.interceptor';
@@ -18,6 +18,7 @@ import {authReducer} from './auth/store/auth.reducer';
 import {AuthEffects} from './auth/store/auth.effects';
 import {StoreDevtoolsModule} from '@ngrx/store-devtools';
 import {environment} from '../environments/environment';
+import {notificationsReducer} from './main/store/notifications/notifications.reducer';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,7 @@ import {environment} from '../environments/environment';
     CoreModule,
     HttpClientModule,
     HttpClientXsrfModule,
-    StoreModule.forRoot({cart: reducer, core: coreReducer, main: mainReducer, auth: authReducer}),
+    StoreModule.forRoot({cart: reducer, core: coreReducer, main: mainReducer, auth: authReducer, notifications: notificationsReducer}),
     EffectsModule.forRoot([CartEffects, MainEffects, AuthEffects]),
     StoreDevtoolsModule.instrument({
       maxAge: 25,
@@ -42,4 +43,5 @@ import {environment} from '../environments/environment';
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}

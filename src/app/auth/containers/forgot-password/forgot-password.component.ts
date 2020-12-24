@@ -1,8 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {NotificationsService} from '../../../core/services/notifications.service';
 import {Router} from '@angular/router';
 import {AuthService} from '../../services/auth.service';
+import {Store} from '@ngrx/store';
+import {addSuccessNotificationAction} from '../../../main/store/notifications/notifications.actions';
 
 @Component({
   selector: 'bs-forgot-password',
@@ -14,9 +15,9 @@ export class ForgotPasswordComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
-    private notificationsService: NotificationsService,
     private router: Router,
-    private authService: AuthService
+    private authService: AuthService,
+    private store: Store
   ) {
   }
 
@@ -32,7 +33,7 @@ export class ForgotPasswordComponent implements OnInit {
       .subscribe(
         () => {
           this.router.navigate(['auth', 'login']).then(() => {
-            this.notificationsService.addSuccessNotification('Na twoją skrzynke wysłaliśmy instrukcję dotyczącą resetu hasła');
+            this.store.dispatch(addSuccessNotificationAction({content: 'Na twoją skrzynke wysłaliśmy instrukcję dotyczącą resetu hasła'}));
           });
         }
       );

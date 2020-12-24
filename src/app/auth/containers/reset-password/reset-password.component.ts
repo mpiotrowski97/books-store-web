@@ -1,9 +1,10 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {ActivatedRoute, Router} from '@angular/router';
-import {NotificationsService} from '../../../core/services/notifications.service';
 import {ConfirmationValidator} from '../../validators/confirmation.validator';
 import {AuthService} from '../../services/auth.service';
+import {Store} from '@ngrx/store';
+import {addSuccessNotificationAction} from '../../../main/store/notifications/notifications.actions';
 
 @Component({
   selector: 'bs-reset-password',
@@ -17,9 +18,9 @@ export class ResetPasswordComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private router: Router,
-    private notificationsService: NotificationsService,
     private route: ActivatedRoute,
-    private authService: AuthService
+    private authService: AuthService,
+    private store: Store
   ) {
   }
 
@@ -37,7 +38,9 @@ export class ResetPasswordComponent implements OnInit {
       .subscribe(
         () => {
           this.router.navigate(['auth', 'login']).then(() => {
-            this.notificationsService.addSuccessNotification('Zmieniliśmy twoje hasło. Zaloguj się używając nowego hasła.');
+            this.store.dispatch(addSuccessNotificationAction({
+              content: 'Zmieniliśmy twoje hasło. Zaloguj się używając nowego hasła.'
+            }));
           });
         }
       );

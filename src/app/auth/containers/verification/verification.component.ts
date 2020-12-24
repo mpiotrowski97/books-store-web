@@ -1,7 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {AuthService} from '../../services/auth.service';
-import {NotificationsService} from '../../../core/services/notifications.service';
+import {Store} from '@ngrx/store';
+import {addSuccessNotificationAction} from '../../../main/store/notifications/notifications.actions';
 
 @Component({
   selector: 'bs-verification',
@@ -14,7 +15,7 @@ export class VerificationComponent implements OnInit {
     private route: ActivatedRoute,
     private authService: AuthService,
     private router: Router,
-    private notificationsService: NotificationsService
+    private store: Store
   ) {
   }
 
@@ -23,8 +24,11 @@ export class VerificationComponent implements OnInit {
       .verifyUser(this.route.snapshot.queryParamMap.get('token'))
       .subscribe(
         () => {
-          this.router.navigate(['auth', 'login'])
-            .then(() => this.notificationsService.addSuccessNotification('Aktywowaliśmy twoje konto. Możesz się zalogować.'));
+          this.router.navigate(['auth', 'login']).then(() => {
+            this.store.dispatch(addSuccessNotificationAction({
+              content: 'Aktywowaliśmy twoje konto. Możesz się zalogować.'
+            }));
+          });
         }
       );
   }

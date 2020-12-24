@@ -1,8 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {UsersService} from '../../../services/users.service';
 import {Router} from '@angular/router';
-import {NotificationsService} from '../../../../core/services/notifications.service';
 import {User} from '../../../../core/models/user';
+import {Store} from '@ngrx/store';
+import {addSuccessNotificationAction} from '../../../../main/store/notifications/notifications.actions';
 
 @Component({
   selector: 'bs-users-create',
@@ -13,7 +14,7 @@ export class UsersCreateComponent implements OnInit {
   constructor(
     private usersService: UsersService,
     private router: Router,
-    private notificationsService: NotificationsService
+    private store: Store
   ) {
   }
 
@@ -25,7 +26,9 @@ export class UsersCreateComponent implements OnInit {
       .subscribe(
         () => {
           this.router.navigate(['/', 'dashboard', 'users']).then(() => {
-            this.notificationsService.addSuccessNotification('User has been successfully added');
+            this.store.dispatch(addSuccessNotificationAction({
+              content: 'User has been successfully added'
+            }));
           });
         }
       );

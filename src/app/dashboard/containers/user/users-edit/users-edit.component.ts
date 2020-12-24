@@ -3,7 +3,8 @@ import {UsersService} from '../../../services/users.service';
 import {User} from '../../../../core/models/user';
 import {ActivatedRoute, Router} from '@angular/router';
 import {finalize} from 'rxjs/operators';
-import {NotificationsService} from '../../../../core/services/notifications.service';
+import {Store} from '@ngrx/store';
+import {addSuccessNotificationAction} from '../../../../main/store/notifications/notifications.actions';
 
 @Component({
   selector: 'bs-users-edit',
@@ -19,7 +20,7 @@ export class UsersEditComponent implements OnInit {
     private usersService: UsersService,
     private route: ActivatedRoute,
     private router: Router,
-    private notificationsService: NotificationsService
+    private store: Store
   ) {
   }
 
@@ -39,7 +40,9 @@ export class UsersEditComponent implements OnInit {
       .subscribe(
         () => {
           this.router.navigate(['/', 'dashboard', 'users']).then(() => {
-            this.notificationsService.addSuccessNotification('User has been successfully updated');
+            this.store.dispatch(addSuccessNotificationAction({
+              content: 'User has been successfully updated'
+            }));
           });
         }
       );

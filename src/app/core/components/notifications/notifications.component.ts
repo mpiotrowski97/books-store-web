@@ -1,30 +1,24 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
-import {NotificationsService} from '../../services/notifications.service';
-import {Subscription} from 'rxjs';
+import {Component, OnInit} from '@angular/core';
+import {Observable} from 'rxjs';
 import {Notification} from '../../models/notification';
+import {Store} from '@ngrx/store';
+import {notificationsSelector} from '../../../main/store/notifications/notifications.reducer';
 
 @Component({
   selector: 'bs-notifications',
   templateUrl: './notifications.component.html',
   styleUrls: ['./notifications.component.scss']
 })
-export class NotificationsComponent implements OnInit, OnDestroy {
-  private notificationsSubscription: Subscription;
-  public notifications: Notification[] = [];
+export class NotificationsComponent implements OnInit{
+  public notifications$: Observable<Notification[]>;
 
-  constructor(private notificationsService: NotificationsService) {
+  constructor(
+    private store: Store
+  ) {
   }
 
   ngOnInit(): void {
-    this.notifications = this.notificationsService.getNotifications();
-
-    this.notificationsSubscription = this.notificationsService
-      .getNotificationsSubject()
-      .subscribe(() => this.notifications = this.notificationsService.getNotifications());
-  }
-
-  ngOnDestroy(): void {
-    this.notificationsSubscription.unsubscribe();
+    this.notifications$ = this.store.select(notificationsSelector);
   }
 
 }
