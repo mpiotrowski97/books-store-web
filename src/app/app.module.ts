@@ -16,6 +16,8 @@ import {MainEffects} from './main/store/main.effects';
 import {mainReducer} from './main/store/main.reducer';
 import {authReducer} from './auth/store/auth.reducer';
 import {AuthEffects} from './auth/store/auth.effects';
+import {StoreDevtoolsModule} from '@ngrx/store-devtools';
+import {environment} from '../environments/environment';
 
 @NgModule({
   declarations: [
@@ -28,7 +30,11 @@ import {AuthEffects} from './auth/store/auth.effects';
     HttpClientModule,
     HttpClientXsrfModule,
     StoreModule.forRoot({cart: reducer, core: coreReducer, main: mainReducer, auth: authReducer}),
-    EffectsModule.forRoot([CartEffects, MainEffects, AuthEffects])
+    EffectsModule.forRoot([CartEffects, MainEffects, AuthEffects]),
+    StoreDevtoolsModule.instrument({
+      maxAge: 25,
+      logOnly: environment.production,
+    }),
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: BaseHrefInterceptor, multi: true},

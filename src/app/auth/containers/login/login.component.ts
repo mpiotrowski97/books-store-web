@@ -3,6 +3,8 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {NotificationsService} from '../../../core/services/notifications.service';
 import {LoginService} from '../../services/login.service';
 import {Router} from '@angular/router';
+import {Store} from '@ngrx/store';
+import {loginUserAction} from '../../store/auth.actions';
 
 @Component({
   selector: 'bs-login',
@@ -17,17 +19,14 @@ export class LoginComponent {
 
   constructor(
     private formBuilder: FormBuilder,
-    private notificationsService: NotificationsService,
-    private loginService: LoginService,
-    private router: Router
+    private store: Store
   ) {
   }
 
   handleFormSubmit(): void {
-    this.loginService
-      .login(this.loginForm.get('username').value, this.loginForm.get('password').value)
-      .subscribe(() => {
-        this.router.navigate(['/']);
-      });
+    this.store.dispatch(loginUserAction({
+      username: this.loginForm.get('username').value,
+      password: this.loginForm.get('password').value
+    }));
   }
 }

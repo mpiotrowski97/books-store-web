@@ -22,6 +22,9 @@ export class HasRoleDirective implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
+    if (this.rolesSubscription) {
+      this.rolesSubscription.unsubscribe();
+    }
   }
 
   ngOnInit(): void {

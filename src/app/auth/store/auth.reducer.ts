@@ -21,7 +21,9 @@ const authStateSelector = (state: { auth: AuthState }) => state.auth;
 
 export const isAuthenticatedSelector = createSelector(
   authStateSelector,
-  (state: AuthState) => !!state.loggedUser
+  (state: AuthState) => {
+    return !!state.loggedUser;
+  }
 );
 
 export const rolesSelector = createSelector(

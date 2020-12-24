@@ -12,7 +12,7 @@
   <bs-application-loader></bs-application-loader>
 </ng-template>
 
-<bs-application-error *ngIf="errorExists"></bs-application-error>
+<bs-application-error *ngIf="error$ | async"></bs-application-error>
 
 
 <bs-footer></bs-footer>
