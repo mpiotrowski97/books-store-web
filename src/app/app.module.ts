@@ -19,6 +19,7 @@ import {AuthEffects} from './auth/store/auth.effects';
 import {StoreDevtoolsModule} from '@ngrx/store-devtools';
 import {environment} from '../environments/environment';
 import {notificationsReducer} from './main/store/notifications/notifications.reducer';
+import {checkoutReducer} from './main/store/checkout/checkout.reducer';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,14 @@ import {notificationsReducer} from './main/store/notifications/notifications.red
     CoreModule,
     HttpClientModule,
     HttpClientXsrfModule,
-    StoreModule.forRoot({cart: reducer, core: coreReducer, main: mainReducer, auth: authReducer, notifications: notificationsReducer}),
+    StoreModule.forRoot({
+      cart: reducer,
+      core: coreReducer,
+      main: mainReducer,
+      auth: authReducer,
+      notifications: notificationsReducer,
+      checkout: checkoutReducer
+    }),
     EffectsModule.forRoot([CartEffects, MainEffects, AuthEffects]),
     StoreDevtoolsModule.instrument({
       maxAge: 25,

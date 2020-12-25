@@ -1,33 +1,34 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {CartService} from '../../../services/cart.service';
 import {CartItem} from '../../../../core/models/cart-item';
 import {Store} from '@ngrx/store';
-import {CartState} from '../../../store/cart/cart.reducer';
-import { Subscription} from 'rxjs';
+import {cartItemsSelector, CartState, cartValueSelector} from '../../../store/cart/cart.reducer';
+import {Observable} from 'rxjs';
 import {removeCartItemAction} from '../../../store/cart/cart.actions';
+import {clearOrder, increaseOrderValueAction, setItemsAction} from '../../../store/checkout/checkout.actions';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'bs-cart',
   templateUrl: './cart.component.html',
   styleUrls: ['./cart.component.scss']
 })
-export class CartComponent implements OnInit, OnDestroy {
+export class CartComponent implements OnInit {
   public isLoading = true;
-  public items: CartItem[] = [];
-  public value: number;
-  public cartSubscription: Subscription;
+  public items$: Observable<CartItem[]>;
+  public value$: Observable<number>;
 
   constructor(
     private cartService: CartService,
-    private store: Store<{cart: CartState}>
+    private store: Store<{ cart: CartState }>,
+    private router: Router
   ) {
   }
 
   ngOnInit(): void {
-    this.cartSubscription = this.store.select('cart').subscribe(cartState => {
-      this.items = cartState.items;
-      this.value = cartState.value;
-    });
+    this.items$ = this.store.select(cartItemsSelector);
+    this.store.dispatch(clearOrder());
+    this.value$ = this.store.select(cartValueSelector);
 
     this.getSummary();
   }
@@ -40,9 +41,9 @@ export class CartComponent implements OnInit, OnDestroy {
     this.store.dispatch(removeCartItemAction({removedItem: cartItem}));
   }
 
-  ngOnDestroy(): void {
-    if (this.cartSubscription) {
-      this.cartSubscription.unsubscribe();
-    }
+  handleShippingClick(items: CartItem[], value: number): void {
+    this.store.dispatch(setItemsAction({items}));
+    this.store.dispatch(increaseOrderValueAction({increase: value}));
+    this.router.navigate(['/', 'checkout', 'shipping']);
   }
 }

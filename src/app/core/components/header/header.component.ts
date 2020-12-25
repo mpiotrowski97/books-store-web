@@ -1,7 +1,7 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
-import {CartService} from '../../../main/services/cart.service';
-import {Subscription} from 'rxjs';
-import {AuthService} from '../../../auth/services/auth.service';
+import {Component, OnInit} from '@angular/core';
+import {Observable} from 'rxjs';
+import {Store} from '@ngrx/store';
+import {cartValueSelector} from '../../../main/store/cart/cart.reducer';
 
 @Component({
   selector: 'bs-header',
@@ -9,14 +9,13 @@ import {AuthService} from '../../../auth/services/auth.service';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
-  public isCartLoading = false;
+  public cartValue$: Observable<number>;
 
-  public cartValue: number;
-
-  constructor(private cartService: CartService, private authService: AuthService) {
+  constructor(private store: Store) {
   }
 
   ngOnInit(): void {
+    this.cartValue$ = this.store.select(cartValueSelector);
   }
 
 }

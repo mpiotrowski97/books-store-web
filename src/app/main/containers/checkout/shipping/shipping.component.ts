@@ -6,6 +6,8 @@ import {finalize, take, tap} from 'rxjs/operators';
 import {AuthService} from '../../../../auth/services/auth.service';
 import {Store} from '@ngrx/store';
 import {loggedUserSelector} from '../../../../auth/store/auth.reducer';
+import {increaseOrderValueAction, setAddressAction, setShipmentMethodAction} from '../../../store/checkout/checkout.actions';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'bs-shipping',
@@ -21,7 +23,8 @@ export class ShippingComponent implements OnInit {
     private formBuilder: FormBuilder,
     private shippingMethodService: ShippingMethodService,
     private authService: AuthService,
-    private store: Store
+    private store: Store,
+    private router: Router
   ) {
   }
 
@@ -51,6 +54,14 @@ export class ShippingComponent implements OnInit {
   }
 
   handleSubmitEvent(): void {
-    //
+    const shipmentMethod: ShippingMethod = this.shippingMethods
+      .reduce((carry, shipment) => shipment.id === this.form.get('shippingMethod').value ? shipment : carry, null);
+    this.store.dispatch(setShipmentMethodAction({
+      shipmentMethod
+    }));
+    this.store.dispatch(setAddressAction({address: this.form.value}));
+    this.store.dispatch(increaseOrderValueAction({increase: shipmentMethod.price}));
+
+    this.router.navigate(['/', 'checkout', 'summary']);
   }
 }

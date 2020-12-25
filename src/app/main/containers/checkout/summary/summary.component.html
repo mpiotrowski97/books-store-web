@@ -1,117 +1,119 @@
-<div class="row">
-  <div class="col-md-8 border p-3">
-    <table class="table">
-      <thead>
-      <tr>
-        <th>Product</th>
-        <th>Price</th>
-        <th>Count</th>
-        <th>Value</th>
-      </tr>
-      </thead>
-      <tbody>
-      <tr *ngFor="let cartItem of items">
-        <td class="flex">
-          <div>
-            <img
-              src="https://www.swiatksiazki.pl/media/catalog/product/cache/8700249466b3ee6242cfa222c30c22e2/1/5/1599906685215.jpg"
-              alt="image">
-          </div>
-        </td>
-        <td>{{ cartItem.bookPrice | number }}$</td>
-        <td class="w-25">
-          <div>
-            <strong>{{ cartItem.quantity }}</strong>
-          </div>
-        </td>
-        <td>{{ cartItem.value | number }}$</td>
-      </tr>
-      </tbody>
-    </table>
+<ng-container *ngIf="order$ | async as order">
+  <div class="row">
+    <div class="col-md-8 border p-3">
+      <table class="table">
+        <thead>
+        <tr>
+          <th>Product</th>
+          <th>Price</th>
+          <th>Count</th>
+          <th>Value</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let cartItem of order.items">
+          <td class="flex">
+            <div>
+              <img
+                src="https://www.swiatksiazki.pl/media/catalog/product/cache/8700249466b3ee6242cfa222c30c22e2/1/5/1599906685215.jpg"
+                alt="image">
+            </div>
+          </td>
+          <td>{{ cartItem.bookPrice | number }}$</td>
+          <td class="w-25">
+            <div>
+              <strong>{{ cartItem.quantity }}</strong>
+            </div>
+          </td>
+          <td>{{ cartItem.value | number }}$</td>
+        </tr>
+        </tbody>
+      </table>
 
-    <hr>
+      <hr>
 
-    <div>
-      <div class="form-check form-check-inline">
-        <label class="form-check-label">
-          <input class="form-check-input" type="checkbox" name="" id="" value="checkedValue">
-          <span>
+      <div>
+        <div class="form-check form-check-inline">
+          <label class="form-check-label">
+            <input class="form-check-input" type="checkbox" name="" id="" [(ngModel)]="termsAccepted">
+            <span>
             I agree with <a href="#">terms and conditions</a>
           </span>
-        </label>
+          </label>
+        </div>
+      </div>
+
+      <div class="mt-3 btn-group float-md-right">
+        <button class="btn btn-primary" [disabled]="!termsAccepted" (click)="handleOrderClick()">Order</button>
       </div>
     </div>
 
-    <div class="mt-3 btn-group float-md-right">
-      <button class="btn btn-primary">Order</button>
+    <div class="col-md-4">
+      <div class="p-3 border">
+        <h3>Order summary</h3>
+
+        <table class="table">
+          <tbody>
+          <tr>
+            <td class="font-weight-bolder">Value</td>
+            <td class="text-right">{{ value$ | async | number }} $</td>
+          </tr>
+
+          <tr>
+            <td class="font-weight-bolder">Shipping</td>
+            <td class="text-right">{{ order.shipmentMethod.price | number }} $</td>
+          </tr>
+
+          <tr>
+            <td class="font-weight-bolder text-danger">Summary</td>
+            <td class="text-right">{{ order.value | number }} $</td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="p-3 border mt-3">
+        <h3>Shipping</h3>
+
+        <table class="table">
+          <tbody>
+          <tr>
+            <td>{{ order.shipmentMethod.name }}</td>
+          </tr>
+          <tr>
+            <td>Payment online</td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="p-3 border mt-3">
+        <h3>Shipping address</h3>
+
+        <table class="table">
+          <tbody>
+          <tr>
+            <td>{{ loggedUser.firstName }} {{ loggedUser.lastName }}</td>
+          </tr>
+
+          <tr>
+            <td>{{ order.address.street }} {{ order.address.houseNumber }}</td>
+          </tr>
+
+          <tr>
+            <td>{{ order.address.city }}, {{ order.address.postcode}}</td>
+          </tr>
+
+          <tr>
+            <td>{{ order.address.province }}, {{ order.address.country}}</td>
+          </tr>
+
+          <tr>
+            <td>{{ loggedUser.phoneNumber }}</td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
   </div>
-
-  <div class="col-md-4">
-    <div class="p-3 border">
-      <h3>Order summary</h3>
-
-      <table class="table">
-        <tbody>
-        <tr>
-          <td class="font-weight-bolder">Value</td>
-          <td class="text-right">{{ 51 | number }} $</td>
-        </tr>
-
-        <tr>
-          <td class="font-weight-bolder">Shipping</td>
-          <td class="text-right">{{ 51 | number }} $</td>
-        </tr>
-
-        <tr>
-          <td class="font-weight-bolder text-danger">Summary</td>
-          <td class="text-right">{{ 51 | number }} $</td>
-        </tr>
-        </tbody>
-      </table>
-    </div>
-
-    <div class="p-3 border mt-3">
-      <h3>Shipping</h3>
-
-      <table class="table">
-        <tbody>
-        <tr>
-          <td>Courier</td>
-        </tr>
-        <tr>
-          <td>Payment online</td>
-        </tr>
-        </tbody>
-      </table>
-    </div>
-
-    <div class="p-3 border mt-3">
-      <h3>Shipping address</h3>
-
-      <table class="table">
-        <tbody>
-        <tr>
-          <td>Michał Piotrowski</td>
-        </tr>
-
-        <tr>
-          <td>Sportowa 6</td>
-        </tr>
-
-        <tr>
-          <td>Kielce, 15-123</td>
-        </tr>
-
-        <tr>
-          <td>Polska</td>
-        </tr>
-
-        <tr>
-          <td>123123123</td>
-        </tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
-</div>
+</ng-container>
