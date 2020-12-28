@@ -12,15 +12,16 @@ const initialState: CartState = {
   value: 0.0,
 };
 
-const cartReducer = createReducer(
-  initialState,
-  on(addCartItemAction, (state, {newItem}) => ({...state, items: [...state.items, newItem]})),
-  on(removeCartItemAction, (state, {removedItem}) => ({...state, items: state.items.filter(item => item !== removedItem)})),
-  on(loadCartSuccessAction, (state, {cartSummary}) => ({...state, items: cartSummary.items, value: cartSummary.value}))
-);
-
-export function reducer(state: CartState | undefined, action: Action): CartState {
-  return cartReducer(state, action);
+export function cartReducer(state: CartState | undefined, action: Action): CartState {
+  return createReducer(
+    initialState,
+    on(addCartItemAction, (currentState, {newItem}) => ({...currentState, items: [...currentState.items, newItem]})),
+    on(removeCartItemAction, (currentState, {removedItem}) => ({
+      ...currentState,
+      items: currentState.items.filter(item => item !== removedItem)
+    })),
+    on(loadCartSuccessAction, (currentState, {cartSummary}) => ({...state, items: cartSummary.items, value: cartSummary.value}))
+  )(state, action);
 }
 
 const cartStateSelector = (state: { cart: CartState }) => state.cart;

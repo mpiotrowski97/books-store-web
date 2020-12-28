@@ -8,18 +8,10 @@ import {HTTP_INTERCEPTORS, HttpClientModule, HttpClientXsrfModule} from '@angula
 import {BaseHrefInterceptor} from './core/interceptors/base-href.interceptor';
 import {ApplicationErrorsInterceptor} from './core/interceptors/application-errors.interceptor';
 import {StoreModule} from '@ngrx/store';
-import {reducer} from './main/store/cart/cart.reducer';
 import {EffectsModule} from '@ngrx/effects';
-import {CartEffects} from './main/store/cart/cart.effects';
-import {coreReducer} from './core/store/core.reducer';
-import {MainEffects} from './main/store/main.effects';
-import {mainReducer} from './main/store/main.reducer';
-import {authReducer} from './auth/store/auth.reducer';
-import {AuthEffects} from './auth/store/auth.effects';
 import {StoreDevtoolsModule} from '@ngrx/store-devtools';
 import {environment} from '../environments/environment';
-import {notificationsReducer} from './main/store/notifications/notifications.reducer';
-import {checkoutReducer} from './main/store/checkout/checkout.reducer';
+import {appEffects, appState} from './app.store';
 
 @NgModule({
   declarations: [
@@ -31,15 +23,8 @@ import {checkoutReducer} from './main/store/checkout/checkout.reducer';
     CoreModule,
     HttpClientModule,
     HttpClientXsrfModule,
-    StoreModule.forRoot({
-      cart: reducer,
-      core: coreReducer,
-      main: mainReducer,
-      auth: authReducer,
-      notifications: notificationsReducer,
-      checkout: checkoutReducer
-    }),
-    EffectsModule.forRoot([CartEffects, MainEffects, AuthEffects]),
+    StoreModule.forRoot(appState),
+    EffectsModule.forRoot(appEffects),
     StoreDevtoolsModule.instrument({
       maxAge: 25,
       logOnly: environment.production,

@@ -7,6 +7,7 @@ import {User} from '../../../../core/models/user';
 import {loggedUserSelector} from '../../../../auth/store/auth.reducer';
 import {take} from 'rxjs/operators';
 import {cartValueSelector} from '../../../store/cart/cart.reducer';
+import {createOrderAction} from '../../../store/checkout/checkout.actions';
 
 @Component({
   selector: 'bs-summary',
@@ -30,7 +31,7 @@ export class SummaryComponent implements OnInit {
       .subscribe(user => this.loggedUser = user);
   }
 
-  handleOrderClick(): void {
-
+  handleOrderClick(order: Order): void {
+    this.store.dispatch(createOrderAction({order}));
   }
 }
