@@ -27,3 +27,7 @@ export interface CartSummaryResponse {
 // tslint:disable-next-line:no-empty-interface
 export interface CreateUserModelResponse extends User {
 }
+
+export interface CreateOrderResponse {
+  redirectUrl: string;
+}
