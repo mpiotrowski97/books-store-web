@@ -4,9 +4,10 @@ import {CartItem} from '../../../../core/models/cart-item';
 import {Store} from '@ngrx/store';
 import {cartItemsSelector, CartState, cartValueSelector} from '../../../store/cart/cart.reducer';
 import {Observable} from 'rxjs';
-import {removeCartItemAction} from '../../../store/cart/cart.actions';
+import {changeCartItemQuantity, clearCartAction, removeCartItemAction} from '../../../store/cart/cart.actions';
 import {clearOrder, increaseOrderValueAction, setItemsAction} from '../../../store/checkout/checkout.actions';
 import {Router} from '@angular/router';
+import {addSuccessNotificationAction} from '../../../store/notifications/notifications.actions';
 
 @Component({
   selector: 'bs-cart',
@@ -45,5 +46,25 @@ export class CartComponent implements OnInit {
     this.store.dispatch(setItemsAction({items}));
     this.store.dispatch(increaseOrderValueAction({increase: value}));
     this.router.navigate(['/', 'checkout', 'shipping']);
+  }
+
+  handleClearCartClick(): void {
+    this.store.dispatch(clearCartAction());
+  }
+
+  handleQuantityChange(cartItem: CartItem, $event: any): void {
+    const quantity = $event.target.value;
+
+    if (100 < quantity) {
+      addSuccessNotificationAction({content: `Cannot change quantity. Max items quantity is 100`});
+      return;
+    }
+
+    if (0 >= quantity) {
+      this.store.dispatch(removeCartItemAction({removedItem: cartItem}));
+      return;
+    }
+
+    this.store.dispatch(changeCartItemQuantity({cartItem, quantity: +$event.target.value}));
   }
 }

@@ -31,8 +31,6 @@ export class BookCardComponent implements OnInit {
   }
 
   handleAddToCartClick(): void {
-    this.isProcessing = true;
-
     this.store.dispatch(addCartItemAction({
       newItem: {
         id: this.book.isbn,
@@ -42,14 +40,5 @@ export class BookCardComponent implements OnInit {
         value: +this.book.price
       }
     }));
-
-    this.cartService
-      .addToCart(this.book.isbn)
-      .pipe(
-        finalize(() => this.isProcessing = false)
-      )
-      .subscribe(
-        () => this.store.dispatch(addSuccessNotificationAction({content: `${this.book.title} has been added to the cart!`}))
-      );
   }
 }
