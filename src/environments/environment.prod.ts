@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  apiUrl: 'https://books-store-backend.herokuapp.com'
+  apiUrl: 'http://backend.books-store-project.ninja'
 };
