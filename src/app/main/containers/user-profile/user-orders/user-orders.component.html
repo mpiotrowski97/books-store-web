@@ -4,6 +4,10 @@
     <td>#{{ order.orderId }}</td>
     <td>{{ order.items }} items</td>
     <td>{{ order.value }}$</td>
+    <td [class.text-danger]="'UNPAID' === order.status" [class.text-success]="'PAID' === order.status">
+      <strong>{{ order.status }}</strong>
+    </td>
+    <td>{{ order.externalId }}</td>
   </tr>
   </tbody>
 </table>

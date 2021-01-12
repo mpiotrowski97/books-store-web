@@ -3,6 +3,7 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
+    "start-local": "ng serve --live-reload=false",
     "start": "node server.js",
     "build": "ng build --prod=",
     "test": "ng test",
