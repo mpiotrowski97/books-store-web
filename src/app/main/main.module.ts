@@ -13,6 +13,7 @@ import {RatingModule} from 'ng-starrating';
 import { CategoryArchiveComponent } from './containers/category-archive/category-archive.component';
 import { UserProfileComponent } from './containers/user-profile/user-profile.component';
 import { ShelfPreviewComponent } from './containers/shelf-preview/shelf-preview.component';
+import { PaymentCompleteComponent } from './containers/payment-complete/payment-complete.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { ShelfPreviewComponent } from './containers/shelf-preview/shelf-preview.
     BookPreviewComponent,
     CategoryArchiveComponent,
     UserProfileComponent,
-    ShelfPreviewComponent
+    ShelfPreviewComponent,
+    PaymentCompleteComponent
   ],
   exports: [
     CheckoutNavigationComponent

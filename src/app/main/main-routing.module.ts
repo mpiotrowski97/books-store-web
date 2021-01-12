@@ -6,6 +6,7 @@ import {BookPreviewComponent} from './containers/book-preview/book-preview.compo
 import {CategoryArchiveComponent} from './containers/category-archive/category-archive.component';
 import {UserProfileComponent} from './containers/user-profile/user-profile.component';
 import {ShelfPreviewComponent} from './containers/shelf-preview/shelf-preview.component';
+import {PaymentCompleteComponent} from './containers/payment-complete/payment-complete.component';
 
 const routes: Routes = [
   {
@@ -33,6 +34,10 @@ const routes: Routes = [
   {
     path: 'shelves/:id',
     component: ShelfPreviewComponent
+  },
+  {
+    path: 'payment-complete',
+    component: PaymentCompleteComponent
   }
 ];
 
