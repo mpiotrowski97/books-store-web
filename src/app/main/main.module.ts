@@ -14,6 +14,7 @@ import { CategoryArchiveComponent } from './containers/category-archive/category
 import { UserProfileComponent } from './containers/user-profile/user-profile.component';
 import { ShelfPreviewComponent } from './containers/shelf-preview/shelf-preview.component';
 import { PaymentCompleteComponent } from './containers/payment-complete/payment-complete.component';
+import {ReactiveFormsModule} from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -37,6 +38,7 @@ import { PaymentCompleteComponent } from './containers/payment-complete/payment-
     IvyCarouselModule,
     CoreModule,
     RatingModule,
+    ReactiveFormsModule,
   ]
 })
 export class MainModule {

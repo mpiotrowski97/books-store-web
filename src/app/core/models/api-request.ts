@@ -20,3 +20,8 @@ export interface CreateUserModelRequest {
   roles: string[];
   enabled: boolean;
 }
+
+export interface CreateReviewRequest {
+  content: string;
+  bookIsbn: string;
+}

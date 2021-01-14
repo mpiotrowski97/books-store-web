@@ -34,7 +34,8 @@
         </tr>
         <tr *bsAuthenticated="true">
           <td class="border-0" colspan="2">
-            <star-rating [value]="3.5" [totalstars]="5" [checkedcolor]="'gold'" [uncheckedcolor]="'lightgray'" size="30px" [readonly]="false" (rate)="handleRateClick()"></star-rating>
+            <star-rating [value]="3.5" [totalstars]="5" [checkedcolor]="'gold'" [uncheckedcolor]="'lightgray'"
+                         size="30px" [readonly]="false" (rate)="handleRateClick()"></star-rating>
           </td>
         </tr>
         </tbody>
@@ -68,38 +69,41 @@
     <div class="col-md-12">
       <h3>Reviews</h3>
 
-      <form *bsAuthenticated="true">
+      <form *bsAuthenticated="true" [formGroup]="reviewForm" (ngSubmit)="handleReviewFormSubmit()">
         <div class="form-group">
           <label for="review-content">Your review</label>
-          <textarea class="form-control" id="review-content" rows="5"></textarea>
+          <textarea class="form-control" id="review-content" rows="5" formControlName="content"></textarea>
         </div>
 
-        <button type="button" class="btn btn-primary">Add review</button>
+        <button type="submit" class="btn btn-primary" [disabled]="reviewForm.invalid">Add review</button>
       </form>
 
-      <ng-container *ngFor="let review of reviews">
-        <div class="card mt-3">
-          <div class="card-body">
-            <div>
+      <bs-loader *ngIf="reviewsLoading"></bs-loader>
+
+      <ng-container *ngIf="!reviewsLoading">
+        <ng-container *ngFor="let review of reviews">
+          <div class="card mt-3">
+            <div class="card-body">
               <div>
-                <h5 class="card-title m-0">{{ review.author }}</h5>
-                <small>{{ review.createdAt }}</small>
-              </div>
+                <div>
+                  <h5 class="card-title m-0">{{ review.author }}</h5>
+                  <small>{{ review.createdAt }}</small>
+                </div>
 
-              <div class="mt-2 mb-2">
-                <strong>
-                  {{ review.likes }}
-                </strong>
-                <a href="#" class="text-info">
-                  <i class="fa fa-thumbs-up" aria-hidden="true"></i>
-                </a>
+                <div class="mt-2 mb-2">
+                  <strong>
+                    {{ review.likes }}
+                  </strong>
+                  <a href="#" class="text-info">
+                    <i class="fa fa-thumbs-up" aria-hidden="true"></i>
+                  </a>
+                </div>
               </div>
+              <p class="card-text pt-2 pb-2">{{ review.content }}</p>
             </div>
-            <p class="card-text pt-2 pb-2">{{ review.content }}</p>
           </div>
-        </div>
+        </ng-container>
       </ng-container>
-
     </div>
   </div>
 </section>

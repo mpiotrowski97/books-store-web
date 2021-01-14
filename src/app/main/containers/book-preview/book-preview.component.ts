@@ -1,6 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {Book} from '../../../core/models/book';
 import {Review} from '../../../core/models/review';
+import {ReviewsService} from '../../services/reviews.service';
+import {finalize} from 'rxjs/operators';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 
 @Component({
   selector: 'bs-book-preview',
@@ -9,7 +12,7 @@ import {Review} from '../../../core/models/review';
 })
 export class BookPreviewComponent implements OnInit {
   public book: Book = {
-    isbn: '1167985749663',
+    isbn: '1750167136081',
     title: 'Edukacja',
     description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cumque deleniti dolorem maiores neque rerum! A ab amet aspernatur cum error eum eveniet fuga laboriosam, nam natus neque non odit officiis quam rem repellat repudiandae sapiente sint unde veniam. Ab accusantium consectetur delectus, exercitationem in iure molestias odit repellendus sed veritatis!',
     author: 'Malcolm XD',
@@ -18,51 +21,43 @@ export class BookPreviewComponent implements OnInit {
     publishedBy: 'WAB'
   };
 
-  public reviews: Review[] = [
-    {
-      id: '1',
-      content: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cumque deleniti dolorem maiores neque rerum! A ab amet aspernatur cum error eum eveniet fuga laboriosam, nam natus neque non odit officiis quam rem repellat repudiandae sapiente sint unde veniam. Ab accusantium consectetur delectus, exercitationem in iure molestias odit repellendus sed veritatis!',
-      author: 'Lorem ipsum',
-      createdAt: '2020-03-12',
-      likes: 4
-    },
-    {
-      id: '2',
-      content: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cumque deleniti dolorem maiores neque rerum! A ab amet aspernatur cum error eum eveniet fuga laboriosam, nam natus neque non odit officiis quam rem repellat repudiandae sapiente sint unde veniam. Ab accusantium consectetur delectus, exercitationem in iure molestias odit repellendus sed veritatis!',
-      author: 'Lorem ipsum',
-      createdAt: '2020-03-12',
-      likes: 20
-    },
-    {
-      id: '3',
-      content: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cumque deleniti dolorem maiores neque rerum! A ab amet aspernatur cum error eum eveniet fuga laboriosam, nam natus neque non odit officiis quam rem repellat repudiandae sapiente sint unde veniam. Ab accusantium consectetur delectus, exercitationem in iure molestias odit repellendus sed veritatis!',
-      author: 'Lorem ipsum',
-      createdAt: '2020-03-12',
-      likes: 50
-    },
-    {
-      id: '4',
-      content: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cumque deleniti dolorem maiores neque rerum! A ab amet aspernatur cum error eum eveniet fuga laboriosam, nam natus neque non odit officiis quam rem repellat repudiandae sapiente sint unde veniam. Ab accusantium consectetur delectus, exercitationem in iure molestias odit repellendus sed veritatis!',
-      author: 'Lorem ipsum',
-      createdAt: '2020-03-12',
-      likes: 0
-    },
-    {
-      id: '5',
-      content: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cumque deleniti dolorem maiores neque rerum! A ab amet aspernatur cum error eum eveniet fuga laboriosam, nam natus neque non odit officiis quam rem repellat repudiandae sapiente sint unde veniam. Ab accusantium consectetur delectus, exercitationem in iure molestias odit repellendus sed veritatis!',
-      author: 'Lorem ipsum',
-      createdAt: '2020-03-12',
-      likes: 100
-    },
-  ];
+  public reviews: Review[];
+  public reviewsLoading: boolean;
 
-  constructor() {
+  public reviewForm: FormGroup;
+
+  constructor(private reviewsService: ReviewsService, private formBuilder: FormBuilder) {
   }
 
   ngOnInit(): void {
+    this.reviewForm = this.formBuilder.group({
+      content: this.formBuilder.control('', [Validators.required])
+    });
+
+    this.fetchReviews();
   }
 
   handleRateClick(): void {
+  }
 
+  private fetchReviews(): void {
+    this.reviewsLoading = true;
+
+    this.reviewsService.getReviews(this.book.isbn)
+      .pipe(
+        finalize(() => this.reviewsLoading = false)
+      )
+      .subscribe(response => this.reviews = response);
+  }
+
+  public handleReviewFormSubmit(): void {
+    this.reviewsService.createReview({content: this.reviewForm.get('content').value, bookIsbn: this.book.isbn})
+      .pipe(
+        finalize(() => {
+          this.reviewForm.reset();
+          this.fetchReviews();
+        })
+      )
+      .subscribe();
   }
 }
