@@ -6,6 +6,8 @@ import {finalize} from 'rxjs/operators';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {ActivatedRoute} from '@angular/router';
 import {BooksService} from '../../services/books.service';
+import {Store} from '@ngrx/store';
+import {addCartItemAction} from '../../store/cart/cart.actions';
 
 @Component({
   selector: 'bs-book-preview',
@@ -24,7 +26,8 @@ export class BookPreviewComponent implements OnInit {
     private booksService: BooksService,
     private reviewsService: ReviewsService,
     private formBuilder: FormBuilder,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private store: Store
   ) {
   }
 
@@ -63,6 +66,14 @@ export class BookPreviewComponent implements OnInit {
   }
 
   handleAddToCartClick(): void {
-    
+    this.store.dispatch(addCartItemAction({
+      newItem: {
+        id: this.book.isbn,
+        bookTitle: this.book.title,
+        bookPrice: +this.book.price,
+        quantity: 1,
+        value: +this.book.price
+      }
+    }));
   }
 }
