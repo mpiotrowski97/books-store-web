@@ -4,6 +4,8 @@ import {Review} from '../../../core/models/review';
 import {ReviewsService} from '../../services/reviews.service';
 import {finalize} from 'rxjs/operators';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {ActivatedRoute} from '@angular/router';
+import {BooksService} from '../../services/books.service';
 
 @Component({
   selector: 'bs-book-preview',
@@ -11,25 +13,24 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
   styleUrls: ['./book-preview.component.scss']
 })
 export class BookPreviewComponent implements OnInit {
-  public book: Book = {
-    isbn: '1750167136081',
-    title: 'Edukacja',
-    description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cumque deleniti dolorem maiores neque rerum! A ab amet aspernatur cum error eum eveniet fuga laboriosam, nam natus neque non odit officiis quam rem repellat repudiandae sapiente sint unde veniam. Ab accusantium consectetur delectus, exercitationem in iure molestias odit repellendus sed veritatis!',
-    author: 'Malcolm XD',
-    price: '31.99',
-    category: 'Adventure',
-    publishedBy: 'WAB'
-  };
+  public book: Book;
 
   public reviews: Review[];
   public reviewsLoading: boolean;
 
   public reviewForm: FormGroup;
 
-  constructor(private reviewsService: ReviewsService, private formBuilder: FormBuilder) {
+  constructor(
+    private booksService: BooksService,
+    private reviewsService: ReviewsService,
+    private formBuilder: FormBuilder,
+    private route: ActivatedRoute
+  ) {
   }
 
   ngOnInit(): void {
+    this.book = this.route.snapshot.data.book;
+
     this.reviewForm = this.formBuilder.group({
       content: this.formBuilder.control('', [Validators.required])
     });
@@ -59,5 +60,9 @@ export class BookPreviewComponent implements OnInit {
         })
       )
       .subscribe();
+  }
+
+  handleAddToCartClick(): void {
+    
   }
 }

@@ -4,9 +4,9 @@ import {HomeComponent} from './containers/home/home.component';
 import {CheckoutGuard} from './guards/checkout.guard';
 import {BookPreviewComponent} from './containers/book-preview/book-preview.component';
 import {CategoryArchiveComponent} from './containers/category-archive/category-archive.component';
-import {UserProfileComponent} from './containers/user-profile/user-profile.component';
 import {ShelfPreviewComponent} from './containers/shelf-preview/shelf-preview.component';
 import {PaymentCompleteComponent} from './containers/payment-complete/payment-complete.component';
+import {BookPreviewResolverService} from './resolvers/book-preview-resolver.service';
 
 const routes: Routes = [
   {
@@ -21,7 +21,10 @@ const routes: Routes = [
   },
   {
     path: 'book/:isbn',
-    component: BookPreviewComponent
+    component: BookPreviewComponent,
+    resolve: {
+      book: BookPreviewResolverService
+    }
   },
   {
     path: 'category/:id',

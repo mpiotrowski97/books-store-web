@@ -8,7 +8,7 @@
     <div class="col-md-8">
       <h3>{{ book.title }}</h3>
 
-      <table class="table ">
+      <table class="table">
         <tbody>
         <tr>
           <td class="font-weight-bold border-0">Author</td>
@@ -69,7 +69,7 @@
     <div class="col-md-12">
       <h3>Reviews</h3>
 
-      <form *bsAuthenticated="true" [formGroup]="reviewForm" (ngSubmit)="handleReviewFormSubmit()">
+      <form *bsAuthenticated="true" [formGroup]="reviewForm" (ngSubmit)="handleReviewFormSubmit(book)">
         <div class="form-group">
           <label for="review-content">Your review</label>
           <textarea class="form-control" id="review-content" rows="5" formControlName="content"></textarea>

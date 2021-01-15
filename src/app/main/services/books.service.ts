@@ -15,4 +15,8 @@ export class BooksService {
   public getBooks(category: string): Observable<Pageable<Book>> {
     return this.http.get<Pageable<Book>>(`books?category=${category}`);
   }
+
+  public getBook(isbn: string): Observable<Book> {
+    return this.http.get<Book>(`books/${isbn}`);
+  }
 }
