@@ -31,3 +31,8 @@ export interface CreateUserModelResponse extends User {
 export interface CreateOrderResponse {
   redirectUrl: string;
 }
+
+export interface CreateShelfResponse {
+  name: string;
+  booksQuantity: number;
+}

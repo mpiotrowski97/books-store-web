@@ -1,5 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Shelf} from '../../../../core/models/shelf';
+import {Observable} from 'rxjs';
+import {ShelvesService} from '../../../services/shelves.service';
 
 @Component({
   selector: 'bs-user-shelves',
@@ -7,32 +9,13 @@ import {Shelf} from '../../../../core/models/shelf';
   styleUrls: ['./user-shelves.component.scss']
 })
 export class UserShelvesComponent implements OnInit {
+  public shelves$: Observable<Shelf[]>;
 
-  public shelves: Shelf[] = [
-    {
-      id: '1',
-      userId: '1',
-      name: 'Favourites',
-      booksQuantity: 42
-    },
-    {
-      id: '2',
-      userId: '1',
-      name: 'Waiting',
-      booksQuantity: 12
-    },
-    {
-      id: '3',
-      userId: '1',
-      name: 'To read',
-      booksQuantity: 50
-    }
-  ];
-
-  constructor() {
+  constructor(private shelvesService: ShelvesService) {
   }
 
   ngOnInit(): void {
+    this.shelves$ = this.shelvesService.getShelves();
   }
 
   handleShelveDeleteClick(): void {

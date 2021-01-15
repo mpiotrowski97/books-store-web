@@ -4,6 +4,7 @@ import {UserProfileComponent} from './user-profile.component';
 import {UserShelvesComponent} from './user-shelves/user-shelves.component';
 import {UserOrdersComponent} from './user-orders/user-orders.component';
 import {CommunityListComponent} from './community-list/community-list.component';
+import {AddShelfComponent} from './add-shelf/add-shelf.component';
 
 const routes: Routes = [
   {
@@ -21,6 +22,10 @@ const routes: Routes = [
       {
         path: 'community',
         component: CommunityListComponent
+      },
+      {
+        path: 'add-shelf',
+        component: AddShelfComponent
       }
     ]
   }
