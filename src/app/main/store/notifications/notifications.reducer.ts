@@ -1,6 +1,6 @@
 import {Notification} from '../../../core/models/notification';
 import {Action, createReducer, createSelector, on} from '@ngrx/store';
-import {addSuccessNotificationAction, removeNotificationAction} from './notifications.actions';
+import {addFailureNotificationAction, addSuccessNotificationAction, removeNotificationAction} from './notifications.actions';
 import {NotificationType} from '../../../core/types/notification-type.enum';
 
 export interface NotificationsState {
@@ -17,6 +17,10 @@ export function notificationsReducer(state: NotificationsState | undefined, acti
     on(addSuccessNotificationAction, (currentState, {content}) => ({
       ...currentState,
       notifications: [...currentState.notifications, {type: NotificationType.SUCCESS, content}]
+    })),
+    on(addFailureNotificationAction, (currentState, {content}) => ({
+      ...currentState,
+      notifications: [...currentState.notifications, {type: NotificationType.FAILURE, content}]
     })),
     on(removeNotificationAction, (currentState, {notification}) => ({
       ...currentState,

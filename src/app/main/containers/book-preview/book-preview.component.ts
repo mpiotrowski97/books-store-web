@@ -11,6 +11,7 @@ import {addCartItemAction} from '../../store/cart/cart.actions';
 import {Shelf} from '../../../core/models/shelf';
 import {ShelvesService} from '../../services/shelves.service';
 import {Observable} from 'rxjs';
+import {addSuccessNotificationAction} from '../../store/notifications/notifications.actions';
 
 @Component({
   selector: 'bs-book-preview',
@@ -87,5 +88,13 @@ export class BookPreviewComponent implements OnInit {
         value: +this.book.price
       }
     }));
+  }
+
+  handleShelfFormSubmit(): void {
+    this.shelvesService.addBookToShelf(this.shelfForm.get('shelfId').value, this.book.isbn)
+      .pipe(
+        finalize(() => this.shelfForm.reset({shelfId: ''}))
+      )
+      .subscribe(() => this.store.dispatch(addSuccessNotificationAction({content: 'Book has been added'})));
   }
 }

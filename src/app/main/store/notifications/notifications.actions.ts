@@ -4,6 +4,7 @@ import {Notification} from '../../../core/models/notification';
 export enum NotificationsActionsTypes {
   ADD_NOTIFICATION_ACTION_TYPE = '[MAIN] [NOTIFICATIONS] Add notification',
   ADD_SUCCESS_NOTIFICATION_ACTION_TYPE = '[MAIN] [NOTIFICATIONS] Add success notification',
+  ADD_FAILURE_NOTIFICATION_ACTION_TYPE = '[MAIN] [NOTIFICATIONS] Add failure notification',
   REMOVE_NOTIFICATION_ACTION_TYPE = '[MAIN] [NOTIFICATIONS] Remove notification'
 }
 
@@ -14,6 +15,11 @@ export const addNotificationAction = createAction(
 
 export const addSuccessNotificationAction = createAction(
   NotificationsActionsTypes.ADD_SUCCESS_NOTIFICATION_ACTION_TYPE,
+  props<{content: string}>()
+);
+
+export const addFailureNotificationAction = createAction(
+  NotificationsActionsTypes.ADD_FAILURE_NOTIFICATION_ACTION_TYPE,
   props<{content: string}>()
 );
 

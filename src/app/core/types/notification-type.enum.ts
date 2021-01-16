@@ -1,3 +1,3 @@
 export enum NotificationType {
-  SUCCESS
+  SUCCESS, FAILURE
 }

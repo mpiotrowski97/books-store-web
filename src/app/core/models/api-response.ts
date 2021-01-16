@@ -36,3 +36,9 @@ export interface CreateShelfResponse {
   name: string;
   booksQuantity: number;
 }
+
+export interface AddBookToShelfResponse {
+  id: string;
+  bookIsbn: string;
+  shelfId: String;
+}

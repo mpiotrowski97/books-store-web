@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
-import {CreateShelfResponse} from '../../core/models/api-response';
+import {AddBookToShelfResponse, CreateShelfResponse} from '../../core/models/api-response';
 import {Shelf} from '../../core/models/shelf';
 
 @Injectable({
@@ -22,5 +22,9 @@ export class ShelvesService {
 
   removeShelf(shelf: Shelf): Observable<void> {
     return this.http.delete<void>(`shelves/${shelf.id}`);
+  }
+
+  addBookToShelf(shelfId: string, bookIsbn: string): Observable<AddBookToShelfResponse> {
+    return this.http.post<AddBookToShelfResponse>(`shelves/book`, {shelfId, bookIsbn});
   }
 }

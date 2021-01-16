@@ -44,23 +44,21 @@
       <p>
         {{ book.description }}
       </p>
-
-      <div class="d-flex flex-row">
-        <ng-container [formGroup]="shelfForm" *bsAuthenticated="true">
-
+      <form [formGroup]="shelfForm" (ngSubmit)="handleShelfFormSubmit()" *bsAuthenticated="true">
+        <div class="d-flex flex-row">
           <div class="input-group w-50">
             <select aria-label="shelf" class="custom-select" formControlName="shelfId">
               <option [value]="''">Shelves...</option>
               <option *ngFor="let shelf of (shelves$ | async)" [value]="shelf.id">{{ shelf.name }}</option>
             </select>
             <div class="input-group-append">
-              <button class="btn btn-info" type="button" [disabled]="shelfForm.invalid">Add to shelf</button>
+              <button class="btn btn-info" type="submit" [disabled]="shelfForm.invalid">Add to shelf</button>
             </div>
           </div>
-        </ng-container>
 
-        <button type="button" class="btn btn-success ml-3" (click)="handleAddToCartClick()">Add to cart</button>
-      </div>
+          <button type="button" class="btn btn-success ml-3" (click)="handleAddToCartClick()">Add to cart</button>
+        </div>
+      </form>
 
 
     </div>

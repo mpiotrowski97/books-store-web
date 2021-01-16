@@ -9,6 +9,7 @@ import {Observable, throwError} from 'rxjs';
 import {catchError} from 'rxjs/operators';
 import {Store} from '@ngrx/store';
 import {setErrorAction} from '../../main/store/main.actions';
+import {addFailureNotificationAction, addSuccessNotificationAction} from '../../main/store/notifications/notifications.actions';
 
 @Injectable()
 export class ApplicationErrorsInterceptor implements HttpInterceptor {
@@ -23,6 +24,8 @@ export class ApplicationErrorsInterceptor implements HttpInterceptor {
         catchError((error: HttpErrorResponse) => {
           if (422 !== error.status) {
             this.store.dispatch(setErrorAction({isError: true}));
+          } else {
+            this.store.dispatch(addFailureNotificationAction({content: error.error.message}));
           }
 
           return throwError(error);
