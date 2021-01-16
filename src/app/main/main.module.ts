@@ -15,6 +15,7 @@ import { UserProfileComponent } from './containers/user-profile/user-profile.com
 import { ShelfPreviewComponent } from './containers/shelf-preview/shelf-preview.component';
 import { PaymentCompleteComponent } from './containers/payment-complete/payment-complete.component';
 import {ReactiveFormsModule} from '@angular/forms';
+import { SingleReviewComponent } from './components/single-review/single-review.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import {ReactiveFormsModule} from '@angular/forms';
     CategoryArchiveComponent,
     UserProfileComponent,
     ShelfPreviewComponent,
-    PaymentCompleteComponent
+    PaymentCompleteComponent,
+    SingleReviewComponent
   ],
   exports: [
     CheckoutNavigationComponent

@@ -4,5 +4,5 @@ export interface Review {
   author: string;
   createdAt: string;
   likes: number;
-  isSpoiler: boolean;
+  spoiler: boolean;
 }

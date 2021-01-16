@@ -97,4 +97,8 @@ export class BookPreviewComponent implements OnInit {
       )
       .subscribe(() => this.store.dispatch(addSuccessNotificationAction({content: 'Book has been added'})));
   }
+
+  handleReviewChange(): void {
+    this.fetchReviews();
+  }
 }

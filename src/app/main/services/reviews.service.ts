@@ -19,4 +19,12 @@ export class ReviewsService {
   public createReview(request: CreateReviewRequest): Observable<Review> {
     return this.http.post<Review>(`reviews`, request);
   }
+
+  markAsSpoiler(id: string): Observable<void> {
+    return this.http.put<void>(`reviews/${id}/spoiler`, {});
+  }
+
+  delete(id: string): Observable<void> {
+    return this.http.delete<void>(`reviews/${id}`);
+  }
 }

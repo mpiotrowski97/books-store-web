@@ -1,0 +1,33 @@
+<div class="card mt-3">
+  <div class="card-body">
+    <div>
+      <div>
+        <h5 class="card-title m-0">{{ review.author }}</h5>
+        <small>{{ review.createdAt }}</small>
+      </div>
+
+      <div class="mt-2 mb-2">
+        <strong>
+          30
+        </strong>
+        <a href="#" class="text-info">
+          <i class="fa fa-thumbs-up" aria-hidden="true"></i>
+        </a>
+      </div>
+    </div>
+    <button type="button" class="btn btn-primary btn-sm btn-block w-25" *ngIf="hideReview" (click)="hideReview = false">
+      Show spoiler
+    </button>
+    <p class="card-text pt-2 pb-2" *ngIf="!hideReview">{{ review.content }}</p>
+    <ng-container *ngIf="review.spoiler">
+      <small>Review has been marked as spoiler</small>
+    </ng-container>
+  </div>
+
+  <div class="card-footer" *bsHasRole="'ROLE_MODERATOR'">
+    <button type="button" class="btn btn-warning" *ngIf="!review.spoiler"
+            (click)="handleSpoilerClick(review)">Spoiler
+    </button>
+    <button type="button" class="ml-2 btn btn-danger" (click)="handleDeleteClick(review)">Delete</button>
+  </div>
+</div>
