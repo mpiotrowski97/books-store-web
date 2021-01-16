@@ -1,8 +1,9 @@
 <div class="card">
   <div class="card-body text-center">
-    <img class="w-50"
-         src="https://www.swiatksiazki.pl/media/catalog/product/cache/8700249466b3ee6242cfa222c30c22e2/3/4/3499906703934.jpg"
-        [alt]="book.title">
+    <div class="w-50"
+         [style]="'background-image: url(' + image + ');background-size: cover; min-height: 150px; margin: 0 auto;'">
+    </div>
+
 
     <h5 class="card-title p-1 m-0">{{ book.title }}</h5>
 
@@ -14,7 +15,8 @@
 
     <div>
       <a [routerLink]="['/', 'book', book.isbn]" class="btn btn-info" href="#" role="button">Show</a>
-      <button class="btn btn-success ml-2" [disabled]="isProcessing" *bsAuthenticated="true" (click)="handleAddToCartClick()">
+      <button class="btn btn-success ml-2" [disabled]="isProcessing || 0 === book.quantity" *bsAuthenticated="true"
+              (click)="handleAddToCartClick()">
         <span *ngIf="isProcessing" class="spinner-border spinner-border-sm" role="status"></span>
         <span *ngIf="!isProcessing">Add to card</span>
       </button>

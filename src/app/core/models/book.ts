@@ -6,4 +6,5 @@ export interface Book {
   price: string;
   category: string;
   publishedBy: string;
+  quantity: number;
 }

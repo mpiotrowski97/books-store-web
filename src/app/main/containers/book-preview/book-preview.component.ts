@@ -84,6 +84,7 @@ export class BookPreviewComponent implements OnInit {
         id: this.book.isbn,
         bookTitle: this.book.title,
         bookPrice: +this.book.price,
+        bookIsbn: this.book.isbn,
         quantity: 1,
         value: +this.book.price
       }

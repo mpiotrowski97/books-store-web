@@ -19,6 +19,7 @@ export class ShelfPreviewComponent implements OnInit {
   public books: Book[] = [
     {
       author: 'Kiera Hilll',
+      quantity: 1,
       category: 'Adventure',
       description: 'Illo libero est quis consequatur debitis nesciunt molestiae iste quod sit inventore hic sunt molestiae error quidem non aut reprehenderit eos impedit perspiciatis iste quaerat est adipisci veritatis voluptatem veniam beatae minima exercitationem aperiam rerum occaecati saepe ut laboriosam consequatur ad ut et ut eius excepturi cupiditate architecto distinctio aperiam',
       isbn: '1651516983519',
@@ -28,6 +29,7 @@ export class ShelfPreviewComponent implements OnInit {
     },
     {
       author: 'Kiera Hilll',
+      quantity: 1,
       category: 'Adventure',
       description: 'Illo libero est quis consequatur debitis nesciunt molestiae iste quod sit inventore hic sunt molestiae error quidem non aut reprehenderit eos impedit perspiciatis iste quaerat est adipisci veritatis voluptatem veniam beatae minima exercitationem aperiam rerum occaecati saepe ut laboriosam consequatur ad ut et ut eius excepturi cupiditate architecto distinctio aperiam',
       isbn: '1651516983519',
@@ -37,6 +39,7 @@ export class ShelfPreviewComponent implements OnInit {
     },
     {
       author: 'Kiera Hilll',
+      quantity: 1,
       category: 'Adventure',
       description: 'Illo libero est quis consequatur debitis nesciunt molestiae iste quod sit inventore hic sunt molestiae error quidem non aut reprehenderit eos impedit perspiciatis iste quaerat est adipisci veritatis voluptatem veniam beatae minima exercitationem aperiam rerum occaecati saepe ut laboriosam consequatur ad ut et ut eius excepturi cupiditate architecto distinctio aperiam',
       isbn: '1651516983519',
@@ -46,6 +49,7 @@ export class ShelfPreviewComponent implements OnInit {
     },
     {
       author: 'Kiera Hilll',
+      quantity: 1,
       category: 'Adventure',
       description: 'Illo libero est quis consequatur debitis nesciunt molestiae iste quod sit inventore hic sunt molestiae error quidem non aut reprehenderit eos impedit perspiciatis iste quaerat est adipisci veritatis voluptatem veniam beatae minima exercitationem aperiam rerum occaecati saepe ut laboriosam consequatur ad ut et ut eius excepturi cupiditate architecto distinctio aperiam',
       isbn: '1651516983519',
@@ -55,6 +59,7 @@ export class ShelfPreviewComponent implements OnInit {
     },
     {
       author: 'Kiera Hilll',
+      quantity: 1,
       category: 'Adventure',
       description: 'Illo libero est quis consequatur debitis nesciunt molestiae iste quod sit inventore hic sunt molestiae error quidem non aut reprehenderit eos impedit perspiciatis iste quaerat est adipisci veritatis voluptatem veniam beatae minima exercitationem aperiam rerum occaecati saepe ut laboriosam consequatur ad ut et ut eius excepturi cupiditate architecto distinctio aperiam',
       isbn: '1651516983519',
@@ -64,6 +69,7 @@ export class ShelfPreviewComponent implements OnInit {
     },
     {
       author: 'Kiera Hilll',
+      quantity: 1,
       category: 'Adventure',
       description: 'Illo libero est quis consequatur debitis nesciunt molestiae iste quod sit inventore hic sunt molestiae error quidem non aut reprehenderit eos impedit perspiciatis iste quaerat est adipisci veritatis voluptatem veniam beatae minima exercitationem aperiam rerum occaecati saepe ut laboriosam consequatur ad ut et ut eius excepturi cupiditate architecto distinctio aperiam',
       isbn: '1651516983519',
@@ -73,6 +79,7 @@ export class ShelfPreviewComponent implements OnInit {
     },
     {
       author: 'Kiera Hilll',
+      quantity: 1,
       category: 'Adventure',
       description: 'Illo libero est quis consequatur debitis nesciunt molestiae iste quod sit inventore hic sunt molestiae error quidem non aut reprehenderit eos impedit perspiciatis iste quaerat est adipisci veritatis voluptatem veniam beatae minima exercitationem aperiam rerum occaecati saepe ut laboriosam consequatur ad ut et ut eius excepturi cupiditate architecto distinctio aperiam',
       isbn: '1651516983519',
@@ -82,6 +89,7 @@ export class ShelfPreviewComponent implements OnInit {
     },
     {
       author: 'Kiera Hilll',
+      quantity: 1,
       category: 'Adventure',
       description: 'Illo libero est quis consequatur debitis nesciunt molestiae iste quod sit inventore hic sunt molestiae error quidem non aut reprehenderit eos impedit perspiciatis iste quaerat est adipisci veritatis voluptatem veniam beatae minima exercitationem aperiam rerum occaecati saepe ut laboriosam consequatur ad ut et ut eius excepturi cupiditate architecto distinctio aperiam',
       isbn: '1651516983519',
@@ -91,6 +99,7 @@ export class ShelfPreviewComponent implements OnInit {
     },
     {
       author: 'Kiera Hilll',
+      quantity: 1,
       category: 'Adventure',
       description: 'Illo libero est quis consequatur debitis nesciunt molestiae iste quod sit inventore hic sunt molestiae error quidem non aut reprehenderit eos impedit perspiciatis iste quaerat est adipisci veritatis voluptatem veniam beatae minima exercitationem aperiam rerum occaecati saepe ut laboriosam consequatur ad ut et ut eius excepturi cupiditate architecto distinctio aperiam',
       isbn: '1651516983519',

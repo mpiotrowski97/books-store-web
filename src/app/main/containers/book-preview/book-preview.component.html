@@ -27,6 +27,10 @@
           <td class="border-0">{{ book.publishedBy }}</td>
         </tr>
         <tr>
+          <td class="font-weight-bold border-0">In stock</td>
+          <td class="border-0">{{ book.quantity }}</td>
+        </tr>
+        <tr>
           <td class="border-0 font-weight-bold">Price</td>
           <td class="border-0 font-weight-bold text-danger">
             {{ book.price | number }} $
@@ -56,7 +60,9 @@
             </div>
           </div>
 
-          <button type="button" class="btn btn-success ml-3" (click)="handleAddToCartClick()">Add to cart</button>
+          <button type="button" class="btn btn-success ml-3" (click)="handleAddToCartClick()"
+                  [disabled]="0 === book.quantity">Add to cart
+          </button>
         </div>
       </form>
 
@@ -81,7 +87,8 @@
       <bs-loader *ngIf="reviewsLoading"></bs-loader>
 
       <ng-container *ngIf="!reviewsLoading">
-        <bs-single-review *ngFor="let review of reviews" [review]="review" (reviewChange)="handleReviewChange()"></bs-single-review>
+        <bs-single-review *ngFor="let review of reviews" [review]="review"
+                          (reviewChange)="handleReviewChange()"></bs-single-review>
       </ng-container>
     </div>
   </div>
