@@ -19,4 +19,8 @@ export class ShelvesService {
   getShelves(): Observable<Shelf[]> {
     return this.http.get<Shelf[]>(`shelves`);
   }
+
+  removeShelf(shelf: Shelf): Observable<void> {
+    return this.http.delete<void>(`shelves/${shelf.id}`);
+  }
 }

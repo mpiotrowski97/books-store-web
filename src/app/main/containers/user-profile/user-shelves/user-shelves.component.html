@@ -4,12 +4,12 @@
 
 <table class="table table-striped table-inverse">
   <tbody>
-  <tr *ngFor="let shelf of shelves$ | async">
+  <tr *ngFor="let shelf of shelves">
     <td scope="row">{{ shelf.name }}</td>
     <td>{{ shelf.booksQuantity }} books</td>
     <td class="w-25">
       <a [routerLink]="['/', 'shelves', shelf.id]" class="btn btn-info">Show</a>
-      <button type="button" class="btn btn-danger ml-3" (click)="handleShelveDeleteClick()">Delete</button>
+      <button type="button" class="btn btn-danger ml-3" (click)="handleShelveDeleteClick(shelf)">Delete</button>
     </td>
   </tr>
   </tbody>

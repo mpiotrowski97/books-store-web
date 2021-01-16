@@ -45,21 +45,23 @@
         {{ book.description }}
       </p>
 
-      <div class="d-flex flex-row" *bsAuthenticated="true">
-        <div class="input-group w-50">
-          <select class="custom-select" id="inputGroupSelect04">
-            <option selected>Shelves...</option>
-            <option value="1">Favourites</option>
-            <option value="2">Likes</option>
-            <option value="3">To read</option>
-          </select>
-          <div class="input-group-append">
-            <button class="btn btn-info" type="button">Add to shelf</button>
+      <div class="d-flex flex-row">
+        <ng-container [formGroup]="shelfForm" *bsAuthenticated="true">
+
+          <div class="input-group w-50">
+            <select aria-label="shelf" class="custom-select" formControlName="shelfId">
+              <option [value]="''">Shelves...</option>
+              <option *ngFor="let shelf of (shelves$ | async)" [value]="shelf.id">{{ shelf.name }}</option>
+            </select>
+            <div class="input-group-append">
+              <button class="btn btn-info" type="button" [disabled]="shelfForm.invalid">Add to shelf</button>
+            </div>
           </div>
-        </div>
+        </ng-container>
 
         <button type="button" class="btn btn-success ml-3" (click)="handleAddToCartClick()">Add to cart</button>
       </div>
+
 
     </div>
   </div>
@@ -69,7 +71,7 @@
     <div class="col-md-12">
       <h3>Reviews</h3>
 
-      <form *bsAuthenticated="true" [formGroup]="reviewForm" (ngSubmit)="handleReviewFormSubmit(book)">
+      <form *bsAuthenticated="true" [formGroup]="reviewForm" (ngSubmit)="handleReviewFormSubmit()">
         <div class="form-group">
           <label for="review-content">Your review</label>
           <textarea class="form-control" id="review-content" rows="5" formControlName="content"></textarea>
@@ -92,7 +94,7 @@
 
                 <div class="mt-2 mb-2">
                   <strong>
-                    {{ review.likes }}
+                    30
                   </strong>
                   <a href="#" class="text-info">
                     <i class="fa fa-thumbs-up" aria-hidden="true"></i>

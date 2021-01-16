@@ -8,6 +8,9 @@ import {ActivatedRoute} from '@angular/router';
 import {BooksService} from '../../services/books.service';
 import {Store} from '@ngrx/store';
 import {addCartItemAction} from '../../store/cart/cart.actions';
+import {Shelf} from '../../../core/models/shelf';
+import {ShelvesService} from '../../services/shelves.service';
+import {Observable} from 'rxjs';
 
 @Component({
   selector: 'bs-book-preview',
@@ -19,15 +22,18 @@ export class BookPreviewComponent implements OnInit {
 
   public reviews: Review[];
   public reviewsLoading: boolean;
-
   public reviewForm: FormGroup;
+
+  public shelves$: Observable<Shelf[]>;
+  public shelfForm: FormGroup;
 
   constructor(
     private booksService: BooksService,
     private reviewsService: ReviewsService,
     private formBuilder: FormBuilder,
     private route: ActivatedRoute,
-    private store: Store
+    private store: Store,
+    private shelvesService: ShelvesService
   ) {
   }
 
@@ -37,6 +43,12 @@ export class BookPreviewComponent implements OnInit {
     this.reviewForm = this.formBuilder.group({
       content: this.formBuilder.control('', [Validators.required])
     });
+
+    this.shelfForm = this.formBuilder.group({
+      shelfId: this.formBuilder.control('', [Validators.required])
+    });
+
+    this.shelves$ = this.shelvesService.getShelves();
 
     this.fetchReviews();
   }
