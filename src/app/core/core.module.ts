@@ -15,6 +15,7 @@ import { SubnavComponent } from './components/subnav/subnav.component';
 import { HideInCheckoutDirective } from './directives/hide-in-checkout.directive';
 import { UpperNavbarComponent } from './components/upper-navbar/upper-navbar.component';
 import { FooterComponent } from './components/footer/footer.component';
+import {ReactiveFormsModule} from '@angular/forms';
 
 
 @NgModule({
@@ -51,7 +52,8 @@ import { FooterComponent } from './components/footer/footer.component';
   ],
   imports: [
     CommonModule,
-    RouterModule
+    RouterModule,
+    ReactiveFormsModule
   ]
 })
 export class CoreModule {

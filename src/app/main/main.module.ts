@@ -16,6 +16,7 @@ import { ShelfPreviewComponent } from './containers/shelf-preview/shelf-preview.
 import { PaymentCompleteComponent } from './containers/payment-complete/payment-complete.component';
 import {ReactiveFormsModule} from '@angular/forms';
 import { SingleReviewComponent } from './components/single-review/single-review.component';
+import { BooksSearchComponent } from './containers/books-search/books-search.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { SingleReviewComponent } from './components/single-review/single-review.
     UserProfileComponent,
     ShelfPreviewComponent,
     PaymentCompleteComponent,
-    SingleReviewComponent
+    SingleReviewComponent,
+    BooksSearchComponent
   ],
   exports: [
     CheckoutNavigationComponent

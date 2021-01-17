@@ -7,6 +7,7 @@ import {CategoryArchiveComponent} from './containers/category-archive/category-a
 import {ShelfPreviewComponent} from './containers/shelf-preview/shelf-preview.component';
 import {PaymentCompleteComponent} from './containers/payment-complete/payment-complete.component';
 import {BookPreviewResolverService} from './resolvers/book-preview-resolver.service';
+import {BooksSearchComponent} from './containers/books-search/books-search.component';
 
 const routes: Routes = [
   {
@@ -41,6 +42,10 @@ const routes: Routes = [
   {
     path: 'payment-complete',
     component: PaymentCompleteComponent
+  },
+  {
+    path: 'books',
+    component: BooksSearchComponent
   }
 ];
 
