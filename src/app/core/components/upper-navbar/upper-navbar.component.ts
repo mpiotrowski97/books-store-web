@@ -11,6 +11,10 @@ export class UpperNavbarComponent {
   }
 
   handleLogoutClick(): void {
+    if (!confirm('Do you really want to sign out?')) {
+      return;
+    }
+
     this.authService.logout();
   }
 

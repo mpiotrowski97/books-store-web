@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {User} from '../../../core/models/user';
+import {Store} from '@ngrx/store';
+import {Observable} from 'rxjs';
+import {loggedUserSelector} from '../../../auth/store/auth.reducer';
 
 @Component({
   selector: 'bs-user-profile',
@@ -7,26 +10,12 @@ import {User} from '../../../core/models/user';
   styleUrls: ['./user-profile.component.scss']
 })
 export class UserProfileComponent implements OnInit {
-  public user: User = {
-    id: '1',
-    username: 'michpio97',
-    email: '97.piotrowski.michal@gmail.com',
-    roles: [''],
-    enabled: true,
-    firstName: 'Michał',
-    lastName: 'Piotrowski',
-    phoneNumber: '+48123123123',
-    city: 'Kielce',
-    postcode: '12-123',
-    street: 'Sportowa',
-    houseNumber: '6',
-    province: 'Swietokrzyskie',
-    country: 'Poland',
-  };
+  public user$: Observable<User>;
 
-  constructor() { }
+  constructor(private store: Store) { }
 
   ngOnInit(): void {
+    this.user$ = this.store.select(loggedUserSelector);
   }
 
 }
