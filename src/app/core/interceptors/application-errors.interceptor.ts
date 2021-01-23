@@ -9,7 +9,7 @@ import {Observable, throwError} from 'rxjs';
 import {catchError} from 'rxjs/operators';
 import {Store} from '@ngrx/store';
 import {setErrorAction} from '../../main/store/main.actions';
-import {addFailureNotificationAction, addSuccessNotificationAction} from '../../main/store/notifications/notifications.actions';
+import {addFailureNotificationAction} from '../../main/store/notifications/notifications.actions';
 
 @Injectable()
 export class ApplicationErrorsInterceptor implements HttpInterceptor {
@@ -22,7 +22,9 @@ export class ApplicationErrorsInterceptor implements HttpInterceptor {
       .handle(request)
       .pipe(
         catchError((error: HttpErrorResponse) => {
-          if (422 !== error.status) {
+          if (401 === error.status && error.url.includes(`login`)) {
+            this.store.dispatch(addFailureNotificationAction({content: 'Invalid user data'}));
+          } else if (422 !== error.status) {
             this.store.dispatch(setErrorAction({isError: true}));
           } else {
             this.store.dispatch(addFailureNotificationAction({content: error.error.message}));
