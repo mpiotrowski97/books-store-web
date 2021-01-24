@@ -1,6 +1,6 @@
 <div>
   <div>
-    <a href="#" class="btn btn-sm btn-success mb-3">Create book</a>
+    <a [routerLink]="'create'"  class="btn btn-sm btn-success mb-3">Create book</a>
   </div>
 
   <bs-loader *ngIf="isLoading"></bs-loader>
@@ -23,7 +23,7 @@
         <td>
           <div class="btn-group-sm">
             <a href="#" type="button" class="btn btn-sm btn-warning">Edit</a>
-            <button type="button" class="btn btn-sm btn-danger ml-1">Delete</button>
+            <button type="button" class="btn btn-sm btn-danger ml-1" (click)="handleBookDeleteClick(book)">Delete</button>
           </div>
         </td>
       </tr>

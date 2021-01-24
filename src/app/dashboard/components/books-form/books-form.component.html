@@ -1,0 +1,111 @@
+<form (submit)="handleFormSubmit()" [formGroup]="form">
+  <div class="form-group">
+    <label for="isbn">Isbn
+      <bs-required-mark></bs-required-mark>
+    </label>
+    <input type="text" class="form-control" id="isbn" formControlName="isbn">
+    <small class="form-text text-danger"
+           *ngIf="form.get('isbn').touched && form.get('isbn').hasError('required')">
+      Please enter isbn
+    </small>
+  </div>
+
+  <div class="form-group">
+    <label for="author">Author
+      <bs-required-mark></bs-required-mark>
+    </label>
+    <input type="text" class="form-control" id="author" formControlName="author">
+    <small class="form-text text-danger"
+           *ngIf="form.get('author').touched && form.get('author').hasError('required')">
+      Please enter author
+    </small>
+  </div>
+
+  <div class="form-group">
+    <label for="description">Description</label>
+    <textarea class="form-control" id="description" formControlName="description"></textarea>
+  </div>
+
+  <div class="form-group">
+    <label for="publishedBy">Published by
+      <bs-required-mark></bs-required-mark>
+    </label>
+    <input type="text" class="form-control" id="publishedBy" formControlName="publishedBy">
+    <small class="form-text text-danger"
+           *ngIf="form.get('publishedBy').touched && form.get('publishedBy').hasError('required')">
+      Please enter publisher
+    </small>
+  </div>
+
+  <div class="form-group">
+    <label for="title">Title
+      <bs-required-mark></bs-required-mark>
+    </label>
+    <input type="text" class="form-control" id="title" formControlName="title">
+    <small class="form-text text-danger"
+           *ngIf="form.get('title').touched && form.get('title').hasError('required')">
+      Please enter title
+    </small>
+  </div>
+
+  <div class="form-group">
+    <label for="category">Category<bs-required-mark></bs-required-mark></label>
+    <select formControlName="categoryId" id="category" class="form-control">
+      <option value="">Category...</option>
+      <option value="" *ngFor="let category of categories$ | async" [ngValue]="category.id">{{ category.name }}</option>
+    </select>
+
+    <small class="form-text text-danger"
+           *ngIf="form.get('title').touched && form.get('title').hasError('required')">
+      Please enter title
+    </small>
+  </div>
+
+  <div class="form-group">
+    <label for="price">Price
+      <bs-required-mark></bs-required-mark>
+    </label>
+    <input type="number" step="0.01" min="0" max="10000" class="form-control" id="price" formControlName="price">
+    <small class="form-text text-danger"
+           *ngIf="form.get('price').touched && form.get('price').hasError('required')">
+      Please enter price
+    </small>
+
+    <small class="form-text text-danger"
+           *ngIf="form.get('price').touched && form.get('price').hasError('min')">
+      Min value is 0
+    </small>
+
+    <small class="form-text text-danger"
+           *ngIf="form.get('price').touched && form.get('price').hasError('max')">
+      Max value is 10000
+    </small>
+  </div>
+
+  <div class="form-group">
+    <label for="quantity">Quantity
+      <bs-required-mark></bs-required-mark>
+    </label>
+    <input type="number" step="1" min="0" max="10000" class="form-control" id="quantity" formControlName="quantity">
+    <small class="form-text text-danger"
+           *ngIf="form.get('quantity').touched && form.get('quantity').hasError('required')">
+      Please enter quantity
+    </small>
+
+    <small class="form-text text-danger"
+           *ngIf="form.get('quantity').touched && form.get('quantity').hasError('min')">
+      Min value is 0
+    </small>
+
+    <small class="form-text text-danger"
+           *ngIf="form.get('quantity').touched && form.get('quantity').hasError('max')">
+      Max value is 10000
+    </small>
+  </div>
+
+  <div class="mt-3 btn-group">
+    <a type="button" class="btn btn-info" [routerLink]="'/dashboard/books'">Back</a>
+    <button type="submit" class="btn btn-primary ml-1" [disabled]="form.invalid">{{ submitLabel }}</button>
+  </div>
+
+</form>

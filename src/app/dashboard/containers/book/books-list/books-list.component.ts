@@ -1,8 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Pageable} from '../../../../core/models/api-response';
 import {Book} from '../../../../core/models/book';
 import {BooksService} from '../../../services/books.service';
 import {finalize} from 'rxjs/operators';
+import {Store} from '@ngrx/store';
+import {addSuccessNotificationAction} from '../../../../main/store/notifications/notifications.actions';
 
 @Component({
   selector: 'bs-books-list',
@@ -14,7 +16,8 @@ export class BooksListComponent implements OnInit {
   public books: Book[] = [];
   public pageable: Pageable<Book>;
 
-  constructor(private booksService: BooksService) { }
+  constructor(private booksService: BooksService, private store: Store) {
+  }
 
   ngOnInit(): void {
     this.getList();
@@ -34,4 +37,15 @@ export class BooksListComponent implements OnInit {
       });
   }
 
+  handleBookDeleteClick(book: Book): void {
+    if (!confirm('Are you sure?')) {
+      return;
+    }
+
+    this.booksService.deleteBook(book)
+      .pipe(
+        finalize(() => this.getList())
+      )
+      .subscribe(() => this.store.dispatch(addSuccessNotificationAction({content: `${book.title} has been removed`})));
+  }
 }

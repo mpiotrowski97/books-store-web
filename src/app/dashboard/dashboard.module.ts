@@ -5,13 +5,15 @@ import { DashboardComponent } from './dashboard.component';
 import { UsersFormComponent } from './components/users-form/users-form.component';
 import {ReactiveFormsModule} from '@angular/forms';
 import {CoreModule} from '../core/core.module';
+import { BooksFormComponent } from './components/books-form/books-form.component';
 
 
 
 @NgModule({
-  declarations: [DashboardComponent, UsersFormComponent],
+  declarations: [DashboardComponent, UsersFormComponent, BooksFormComponent],
   exports: [
-    UsersFormComponent
+    UsersFormComponent,
+    BooksFormComponent
   ],
   imports: [
     CommonModule,

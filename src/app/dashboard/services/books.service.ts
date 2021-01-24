@@ -15,4 +15,12 @@ export class BooksService {
   public getBooks(): Observable<Pageable<Book>> {
     return this.http.get<Pageable<Book>>('books');
   }
+
+  public deleteBook(book: Book): Observable<void> {
+    return this.http.delete<void>(`books/${book.isbn}`);
+  }
+
+  public createBook(book: Book): Observable<void> {
+    return this.http.post<void>(`books`, book);
+  }
 }
